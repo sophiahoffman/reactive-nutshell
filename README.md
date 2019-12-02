@@ -32,11 +32,11 @@ To start you off, here's an example of what the resources in your API should loo
 
 ```json
 {
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
+  "id": 1,
+  "userId": 2,
+  "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
+  "title": "Wormholes Allow Information to Escape Black Holes",
+  "synopsis": "Check out this recent discovery about workholes"
 }
 ```
 
@@ -54,7 +54,7 @@ To start you off, here's an example of what the resources in your API should loo
 
 ## Professional Requirements
 
-1. All teammates must use React and JSON-server. 
+1. All teammates must use React and JSON-server.
 1. Each module should have a comment at the top with the following info: author(s) and purpose of module
 1. The README for your project should include instructions on how another person can download and run the application
 1. An ERD showing the database relationships. A screenshot/image should be included on your README.
@@ -64,30 +64,35 @@ To start you off, here's an example of what the resources in your API should loo
 You will be using local storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to local storage.
 
 ```js
-localStorage.setItem("activeUser", user.id)
+localStorage.setItem("activeUser", user.id);
 ```
 
 If you add a Logout feature, all you will need to do is remove the session storage item.
 
 ```js
-localStorage.removeItem("activeUser")
+localStorage.removeItem("activeUser");
 ```
 
 ## Keep in mind some tips for a good usable app
+
 1. Use acceptable conventions
-   * Logo positioned at top left
-   * Navigation across the top or down the left side
+   - Logo positioned at top left
+   - Navigation across the top or down the left side
 2. Visual hierarchy
-   * Most important information is the most prominent
+   - Most important information is the most prominent
 3. Break pages up into defined sections
-   * Logically related content should be related visually
+   - Logically related content should be related visually
 4. That which is clickable should be obviously clickable.
 5. Eliminate distractions
-   * Use only two typefaces
-   * Limit color pallet (3 colors with black and white)
-   * Use a grid
+   - Use only two typefaces
+   - Limit color pallet (3 colors with black and white)
+   - Use a grid
 6. Support scanning (users don't read)
-   * Use plenty of headings
-   * Short paragraphs
-   * Bulleted lists
+   - Use plenty of headings
+   - Short paragraphs
+   - Bulleted lists
 7. Strive for consistency.
+
+## ERD
+
+![nutshell ERD](./assets/nutshell-erd.png)
