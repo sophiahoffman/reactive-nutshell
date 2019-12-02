@@ -1,6 +1,13 @@
+/* 
+Author: Lauren Riddle
+Purpose: to render the event cards  when the URL is changed to http://localhost:3000/events
+*/
+
 import React, { Component } from 'react'
 import EventCard from './EventCard'
 import APIManager from '../../modules/APIManager'
+import { Button } from 'react-bootstrap';
+
 
 class EventList extends Component {
     state = {
@@ -20,7 +27,7 @@ class EventList extends Component {
         return (
             <>
                 <section className="section-content">
-                    <button type="button" className="btn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</button>
+                    <Button type="button" className="btn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</Button>
                 </section>
                 <div className="container-cards">
                     {this.state.events.map(event =>

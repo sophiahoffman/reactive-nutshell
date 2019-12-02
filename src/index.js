@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Router>
-      <Nutshell />
+    {sessionStorage.setItem("activeUser", 1)}
+    <Nutshell />
   </Router>
-  , document.getElementById('root'))
+  , document.getElementById('root')
+)
