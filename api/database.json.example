@@ -1,8 +1,253 @@
 {
-  "users": [],
-  "articles": [],
-  "messages": [],
-  "events": [],
-  "tasks": [],
-  "friends": []
+  "users": [
+    {
+      "id": 1,
+      "fullName": "John Doe",
+      "email": "john.doe@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "fullName": "Jane Crow",
+      "email": "jane.crow@example.com",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "fullName": "Jim Mole",
+      "email": "jim.mole@yahoo.com",
+      "password": "123"
+    },
+    {
+      "id": 4,
+      "fullName": "Jill Wolfeschlegelsteinhausenbergerdorff",
+      "email": "jill.wolf@hotmail.com",
+      "password": "123"
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "userId": 1,
+      "url": "https://www.google.com",
+      "title": "The Google",
+      "synopsis": "The Google is watching you",
+      "timestamp": "2012-04-23T18:25:43.511Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "url": "https://www.lotr.com",
+      "title": "Lord of the RNG",
+      "synopsis": "Lord of the Random Number Generator",
+      "timestamp": "2012-04-24T18:25:43.511Z"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "url": "https://www.usa.gov",
+      "title": "'Murica",
+      "synopsis": "Let Freedom Ring",
+      "timestamp": "2019-11-14T19:50:13.431Z"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "url": "https://www.amazon.com",
+      "title": "Amazon - Be the product",
+      "synopsis": "Get your Echo spy device today",
+      "timestamp": "2012-04-26T18:25:43.511Z"
+    },
+    {
+      "id": 5,
+      "userId": 3,
+      "url": "https://www.facebook.com",
+      "title": "Facebook - Be the product again",
+      "synopsis": "Watch these ads",
+      "timestamp": "2012-04-27T18:25:43.511Z"
+    },
+    {
+      "id": 6,
+      "userId": 3,
+      "url": "https://www.another-damn-website.com",
+      "title": "Another damn website",
+      "synopsis": "It doesn't even work ok",
+      "timestamp": "2012-04-28T18:25:43.511Z"
+    },
+    {
+      "userId": 4,
+      "url": "https://robohash.org/",
+      "title": "Robo Hash",
+      "synopsis": "Make your own robot",
+      "timestamp": "2019-11-14T19:39:13.756Z",
+      "id": 7
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "userId": 1,
+      "message": "Anyone see the new popular movie out?",
+      "timestamp": "2012-04-25T18:25:43.511Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "message": "I saw it. It was acceptable.",
+      "timestamp": "2012-04-26T18:25:43.511Z"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "message": "I didn't like that one actor in it.",
+      "timestamp": "2012-04-27T18:25:43.511Z"
+    },
+    {
+      "id": 4,
+      "userId": 4,
+      "message": "I love it. It did the thing that I like.",
+      "timestamp": "2012-04-28T18:25:43.511Z"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "userId": 1,
+      "eventName": "Battle of the Bands",
+      "eventDate": "2019-04-21",
+      "location": "Nashville, TN"
+    },
+    {
+      "id": 2,
+      "userId": 4,
+      "eventName": "Forrest Gump Convention",
+      "eventDate": "2019-04-22",
+      "location": "Birmingham, AL"
+    },
+    {
+      "id": 3,
+      "userId": 4,
+      "eventName": "DragonCon",
+      "eventDate": "2019-04-23",
+      "location": "Atlanta, GA"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "eventName": "Cowboy Hat Awards",
+      "eventDate": "2019-04-24",
+      "location": "Nashville, TN"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "userId": 1,
+      "task": "Clean the shed",
+      "expectedCompletionDate": "2019-04-17",
+      "isComplete": false
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "task": "replace the kitchen pipes",
+      "expectedCompletionDate": "2019-04-18",
+      "isComplete": false
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "task": "Put away the dishes",
+      "expectedCompletionDate": "2019-04-19",
+      "isComplete": false
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "task": "Kick the can",
+      "expectedCompletionDate": "2019-04-20",
+      "isComplete": false
+    },
+    {
+      "id": 5,
+      "userId": 4,
+      "task": "Fire the butler",
+      "expectedCompletionDate": "2019-04-21",
+      "isComplete": false
+    },
+    {
+      "userId": 2,
+      "task": "Find that ring",
+      "expectedCompletionDate": "2019-11-16",
+      "isComplete": false,
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "task": "Eat Second Breakfast",
+      "expectedCompletionDate": "2019-11-12",
+      "isComplete": false,
+      "id": 7
+    },
+    {
+      "userId": 2,
+      "task": "Finish capstone project",
+      "expectedCompletionDate": "2019-12-31",
+      "isComplete": false,
+      "id": 8
+    },
+    {
+      "userId": 2,
+      "task": "Eat a pi",
+      "expectedCompletionDate": "1592-03-14",
+      "isComplete": false,
+      "id": 9
+    },
+    {
+      "userId": 3,
+      "task": "Chew some fish",
+      "expectedCompletionDate": "2019-11-15",
+      "isComplete": false,
+      "id": 10
+    },
+    {
+      "userId": 3,
+      "task": "Watch IT Crowd again",
+      "expectedCompletionDate": "2019-11-16",
+      "isComplete": false,
+      "id": 11
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "userId": 1,
+      "loggedInUser": 2
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "loggedInUser": 3
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "loggedInUser": 3
+    },
+    {
+      "id": 4,
+      "userId": 4,
+      "loggedInUser": 1
+    },
+    {
+      "id": 6,
+      "userId": 4,
+      "loggedInUser": 3
+    },
+    {
+      "userId": 3,
+      "loggedInUser": 2,
+      "id": 7
+    }
+  ]
 }
