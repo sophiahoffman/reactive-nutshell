@@ -10,6 +10,7 @@ export class NextEventCard extends Component {
 
     render() {
         const userId = localStorage.getItem("userId")
+        // if the event is not the current user's, disable their ability to delete their friend's event
         if (Number(userId) === this.props.event.userId) {
             return (
                 <div className="eventCard card nextEvent">
@@ -48,6 +49,7 @@ export class RegularEventCard extends Component {
 
     render() {
         const userId = localStorage.getItem("userId")
+        // if the event is not the current user's, disable their ability to delete their friend's event
         if (Number(userId) === this.props.event.userId) {
             return (
                 <div className="eventCard card">
