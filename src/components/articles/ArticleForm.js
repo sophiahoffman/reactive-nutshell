@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormLabel, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import ArticleManager from '../../modules/ArticleManager';
 
 

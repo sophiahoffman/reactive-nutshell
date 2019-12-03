@@ -14,7 +14,7 @@ export default {
     },
 
     deleteArticle(articleId) {
-        const route = `articles/articleId`;
+        const route = `articles/${articleId}`;
         return APIManager.delete(route);
     },
 
