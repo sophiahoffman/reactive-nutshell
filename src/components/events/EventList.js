@@ -4,7 +4,7 @@ Purpose: to render the event cards  when the URL is changed to http://localhost:
 */
 
 import React, { Component } from 'react'
-import EventCard from './EventCard'
+import { NextEventCard, RegularEventCard } from './EventCard'
 import APIManager from '../../modules/APIManager'
 import { Button } from 'react-bootstrap';
 import './Events.css'
@@ -19,22 +19,38 @@ class EventList extends Component {
         const userId = localStorage.getItem("userId")
         let friendsArray = []
         let fetchCall = `events?userId=${userId}`
+        // get all friends for this user
         APIManager.get(`friends?loggedInUser=${userId}`)
             .then(friends => {
                 friends.forEach(friend => {
+                    // put all of this user's friend ids into the friendsArray
                     friendsArray.push(friend.userId)
                     for (let i = 0; i < friendsArray.length; i++) {
+                        // this loop builds the fetch call for events
                         fetchCall += "&&userId=" + friendsArray[i]
                     }
                 })
+                // get all events using the fetch call that we built with the friends array
                 APIManager.get(fetchCall)
                     .then(events => {
+                        events.sort(function (a, b) {
+                            let dateA = new Date(a.eventDate), dateB = new Date(b.eventDate)
+                            return dateA - dateB
+                        })
                         this.setState({
                             events: events
                         })
+
                     })
             })
-        
+
+    }
+
+    deleteEvent = id => {
+        APIManager.delete(`events/${id}`)
+            .then(() => {
+                this.componentDidMount()
+            })
     }
 
     render() {
@@ -43,15 +59,27 @@ class EventList extends Component {
                 <section className="events-section-content">
                     <Button type="button" className="newEventBtn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</Button>
                 </section>
-                <div className="container-cards">
-                    {this.state.events.map(event =>
-                        <EventCard
-                            key={event.id}
-                            event={event}
-                            // deleteAnimal={this.deleteAnimal}
-                            {...this.props}
-                        />
-                    )}
+                <div className="event-container-cards">
+                    
+                    {this.state.events.map((event, index) => { 
+                     // if the index of the event is equal to 0, render the card with the bold text and background color
+                    if(index === 0){
+                    return <NextEventCard
+                        key = { event.id }
+                        event = { event }
+                        deleteEvent = { this.deleteEvent }
+                        {...this.props}
+                    />
+                    } else {
+                        // otherwise just render a regular card 
+                        return <RegularEventCard
+                        key = { event.id }
+                        event = { event }
+                        deleteEvent = { this.deleteEvent }
+                        {...this.props}
+                    />
+                    }
+                })}
                 </div>
             </>
         )
