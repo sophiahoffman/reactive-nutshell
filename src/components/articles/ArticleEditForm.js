@@ -45,7 +45,7 @@ class ArticleEditForm extends Component {
         } else {
             this.setState ({ loadingStatus: true});
             const editedArticle = {
-                id: this.state.articleId,
+                id: Number(this.state.articleId),
                 title: this.state.articleTitle,
                 url: this.state.articleURL,
                 synopsis: this.state.articleSynopsis,

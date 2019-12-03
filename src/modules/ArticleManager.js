@@ -4,7 +4,7 @@ import APIManager from './APIManager'
 
 export default {
     getAllArticles() {
-        const route = `articles?userId=${localStorage.getItem("userId")}`
+        const route = `articles?userId=${localStorage.getItem("userId")}&_sort=timestamp&_order=desc`
         return APIManager.get(route);
     },
 
