@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import ArticleCard from './ArticleCard';
+import ArticleCards from './ArticleCards';
 import ArticleManager from '../../modules/ArticleManager';
 import { Button } from 'react-bootstrap';
 
@@ -43,7 +43,7 @@ class ArticleList extends Component {
             </div>
             <div className="container-cards" align="center">
                 {this.state.articles.map(article => 
-                <ArticleCard 
+                <ArticleCards
                 key={article.id} 
                 article={article} 
                 deleteArticle = {this.deleteArticle}
