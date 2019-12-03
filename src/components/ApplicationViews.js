@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import ArticleList from "./articles/ArticleList";
 import ArticleForm from "./articles/ArticleForm";
+import ArticleEditForm from "./articles/ArticleEditForm";
 
 export default class ApplicationViews extends Component {
 
@@ -62,6 +63,14 @@ export default class ApplicationViews extends Component {
         <Route
           path="/articles/new" render={props => {
             return <ArticleForm
+              {...props}
+            />
+          }}
+        />
+        
+        <Route
+          path="/articles/:articleId(\d+)/edit" render={props => {
+            return <ArticleEditForm
               {...props}
             />
           }}
