@@ -59,7 +59,7 @@ class ArticleForm extends Component {
                 <Form.Label>Synopsis</Form.Label>
                 <Form.Control type="text" placeholder="Enter Synopsis" id="articleSynopsis" onChange={this.handleFieldChange} />
             </Form.Group>
-            <Button variant="primary" type="button" onClick={this.constructNewArticle}>
+            <Button variant="primary" type="button" disabled={this.loadingStatus} onClick={this.constructNewArticle}>
                 Submit
             </Button>
             </Form>

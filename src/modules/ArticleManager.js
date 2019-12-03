@@ -1,9 +1,11 @@
+// Author: Sophia Hoffman
+
 import APIManager from './APIManager'
 
 
 
 export default {
-    getAllArticles() {
+    getUserArticles(userId) {
         const route = `articles?userId=${localStorage.getItem("userId")}&_sort=timestamp&_order=desc`
         return APIManager.get(route);
     },
@@ -26,5 +28,10 @@ export default {
     postArticle(article) {
         const route = `articles`
         return APIManager.post(route, article)
+    },
+
+    getFriends() {
+        const route = `friends?loggedInUser = ${localStorage.getItem("userId")}`
+        return APIManager.get(route);
     }
 }

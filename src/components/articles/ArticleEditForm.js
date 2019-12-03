@@ -81,7 +81,7 @@ class ArticleEditForm extends Component {
                 <Form.Control type="text" id="articleSynopsis" 
                 default value={this.state.articleSynopsis} onChange={this.handleFieldChange}  />
             </Form.Group>
-            <Button variant="primary" type="button" onClick={this.updateExistingArticle}>
+            <Button variant="primary" type="button" disabled={this.loadingStatus} onClick={this.updateExistingArticle}>
                 Submit
             </Button>
         </Form>

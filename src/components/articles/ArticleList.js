@@ -9,12 +9,13 @@ import { Button } from 'react-bootstrap';
 
 class ArticleList extends Component {
     state = {
-        articles:[]
+        articles:[],
+        userId: localStorage.getItem("userId")
     }
 
     componentDidMount() {
         console.log("ARTICLE LIST: ComponentDidMount");
-        ArticleManager.getAllArticles()
+        ArticleManager.getUserArticles(this.state.userId)
         .then(articles => {
             console.log(articles)
             this.setState({
@@ -26,7 +27,7 @@ class ArticleList extends Component {
     deleteArticle = article => {
         ArticleManager.deleteArticle(article)
         .then(() => {
-            ArticleManager.getAllArticles()
+            ArticleManager.getUserArticles(this.state.userId)
             .then((newArticles) => {
                 this.setState({
                     articles: newArticles
