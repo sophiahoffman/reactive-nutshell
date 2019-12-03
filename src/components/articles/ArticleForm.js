@@ -1,3 +1,5 @@
+// Author: Sophia Hoffman
+
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import ArticleManager from '../../modules/ArticleManager';
