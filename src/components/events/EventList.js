@@ -19,14 +19,18 @@ class EventList extends Component {
         const userId = localStorage.getItem("userId")
         let friendsArray = []
         let fetchCall = `events?userId=${userId}`
+        // get all friends for this user
         APIManager.get(`friends?loggedInUser=${userId}`)
             .then(friends => {
                 friends.forEach(friend => {
+                    // put all of this user's friend ids into the friendsArray
                     friendsArray.push(friend.userId)
                     for (let i = 0; i < friendsArray.length; i++) {
+                        // this loop builds the fetch call for events
                         fetchCall += "&&userId=" + friendsArray[i]
                     }
                 })
+                // get all events using the fetch call that we built with the friends array
                 APIManager.get(fetchCall)
                     .then(events => {
                         this.setState({
@@ -36,6 +40,13 @@ class EventList extends Component {
             })
         
     }
+    
+    deleteEvent = id => {
+        APIManager.delete(`events/${id}`)
+          .then(() => {
+            this.componentDidMount()
+          })
+      }
 
     render() {
         return (
@@ -48,7 +59,7 @@ class EventList extends Component {
                         <EventCard
                             key={event.id}
                             event={event}
-                            // deleteAnimal={this.deleteAnimal}
+                            deleteEvent={this.deleteEvent}
                             {...this.props}
                         />
                     )}
