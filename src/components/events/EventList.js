@@ -60,7 +60,9 @@ class EventList extends Component {
                     <Button type="button" className="newEventBtn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</Button>
                 </section>
                 <div className="event-container-cards">
+                    
                     {this.state.events.map((event, index) => { 
+                     // if the index of the event is equal to 0, render the card with the bold text and background color
                     if(index === 0){
                     return <NextEventCard
                         key = { event.id }
@@ -69,6 +71,7 @@ class EventList extends Component {
                         {...this.props}
                     />
                     } else {
+                        // otherwise just render a regular card 
                         return <RegularEventCard
                         key = { event.id }
                         event = { event }
