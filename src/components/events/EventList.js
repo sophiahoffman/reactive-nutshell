@@ -7,6 +7,7 @@ import React, { Component } from 'react'
 import EventCard from './EventCard'
 import APIManager from '../../modules/APIManager'
 import { Button } from 'react-bootstrap';
+import './Events.css'
 
 
 class EventList extends Component {
@@ -15,7 +16,8 @@ class EventList extends Component {
     }
 
     componentDidMount() {
-        APIManager.get("events")
+        const userId = localStorage.getItem("activeUser")
+        APIManager.get(`events?userId=${userId}`)
             .then(events => {
                 this.setState({
                     events: events
@@ -26,8 +28,8 @@ class EventList extends Component {
     render() {
         return (
             <>
-                <section className="section-content">
-                    <Button type="button" className="btn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</Button>
+                <section className="events-section-content">
+                    <Button type="button" className="newEventBtn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</Button>
                 </section>
                 <div className="container-cards">
                     {this.state.events.map(event =>

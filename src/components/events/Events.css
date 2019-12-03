@@ -1,0 +1,10 @@
+.events-section-content {
+text-align: center;
+padding: 10px;
+}
+#newEventForm {
+    border: 2px outset lightgray;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 2px 2px 1px 1px;
+}

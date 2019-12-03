@@ -5,6 +5,7 @@ Purpose: to render the new event form when the URL is changed to http://localhos
 import React, { Component } from 'react'
 import APIManager from "../../modules/APIManager";
 import { Form, Button } from 'react-bootstrap';
+import './Events.css'
 
 
 class EventForm extends Component {
@@ -26,7 +27,7 @@ class EventForm extends Component {
             window.alert("Please input an event name, date, and location")
         } else {
             this.setState({ loadingStatus: true });
-            const user = sessionStorage.getItem("activeUser")
+            const user = localStorage.getItem("activeUser")
             const userId = parseInt(user)
 
             const event = {
