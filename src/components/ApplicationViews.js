@@ -1,5 +1,7 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import ArticleList from "./articles/ArticleList";
+import ArticleForm from "./articles/ArticleForm";
 
 export default class ApplicationViews extends Component {
 
@@ -50,12 +52,20 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/articles" render={props => {
-            return null
-            // Remove null and return the component which will show the user's events
+          exact path="/articles" render={props => {
+            return <ArticleList 
+              {...props}
+            />
           }}
         />
 
+        <Route
+          path="/articles/new" render={props => {
+            return <ArticleForm
+              {...props}
+            />
+          }}
+        />
       </React.Fragment>
     );
   }
