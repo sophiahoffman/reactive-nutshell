@@ -1,5 +1,8 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import ArticleList from "./articles/ArticleList";
+import ArticleForm from "./articles/ArticleForm";
+import ArticleEditForm from "./articles/ArticleEditForm";
 import EventList from './events/EventList'
 import EventForm from './events/EventForm'
 import EventEditForm from './events/EventEditForm'
@@ -65,6 +68,32 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+        <Route
+          exact path="/articles" render={props => {
+            return <ArticleList 
+              {...props}
+            />
+          }}
+        />
+
+        <Route
+          path="/articles/new" render={props => {
+            return <ArticleForm
+              {...props}
+            />
+          }}
+        />
+        
+        <Route
+          path="/articles/:articleId(\d+)/edit" render={props => {
+
+            console.log(props)
+            return <ArticleEditForm
+              {...props}
+
+            />
+          }}
+        />
         <Route path="/events/:eventId(\d+)/edit" render={props => {
           return <EventEditForm {...props} />
         }} />
