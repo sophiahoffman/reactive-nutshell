@@ -16,7 +16,7 @@ class EventList extends Component {
     }
 
     componentDidMount() {
-        const userId = localStorage.getItem("activeUser")
+        const userId = localStorage.getItem("userId")
         let friendsArray = []
         let fetchCall = `events?userId=${userId}`
         APIManager.get(`friends?loggedInUser=${userId}`)
