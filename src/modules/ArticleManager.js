@@ -1,9 +1,10 @@
 import APIManager from './APIManager'
 
-const route = "articles"
+
 
 export default {
     getAllArticles() {
+        const route = `articles?_userId=${localStorage.getItem("id")}`
         return APIManager.get(route);
     },
 
@@ -18,10 +19,12 @@ export default {
     },
 
     updateArticle(article) {
+        const route = `articles/${article.id}`;
         return APIManager.update(route, article);
     },
 
     postArticle(article) {
+        const route = `articles`
         return APIManager.post(route, article)
     }
 }

@@ -26,7 +26,7 @@ class ArticleForm extends Component {
         } else {
             this.setState({loadingStatus: true});
             const article = {
-                userId: 1,
+                userId: localStorage.getItem("id"),
                 title: this.state.articleTitle,
                 url: this.state.articleURL,
                 synopsis: this.state.articleSynopsis,
