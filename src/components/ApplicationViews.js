@@ -1,8 +1,8 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import FriendList from "./friends/FriendList";
 import EventList from "./events/EventList";
 import EventForm from "./events/EventForm";
+import FriendList from "./friends/FriendList";
 
 export default class ApplicationViews extends Component {
   render() {
