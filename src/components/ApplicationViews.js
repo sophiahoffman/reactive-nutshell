@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import EventList from './events/EventList'
 import EventForm from './events/EventForm'
 import EventEditForm from './events/EventEditForm'
+import FriendList from "./friends/FriendList"
 
 export default class ApplicationViews extends Component {
 
@@ -26,8 +27,14 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return (
+              <FriendList
+                getFriends={this.props.getFriends}
+                addFriend={this.props.addFriend}
+                removeFriend={this.props.removeFriend}
+                friends={this.props.friends}
+              />
+            );
           }}
         />
 
