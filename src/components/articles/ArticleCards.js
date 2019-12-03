@@ -5,7 +5,7 @@ import { Card , Button } from 'react-bootstrap'
 
 
 
-class ArticleCard extends Component {
+class ArticleCards extends Component {
 
 
     render() {
@@ -44,4 +44,4 @@ class ArticleCard extends Component {
     };
 }
 
-export default ArticleCard
+export default ArticleCards
