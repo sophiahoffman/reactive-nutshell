@@ -33,20 +33,25 @@ class EventList extends Component {
                 // get all events using the fetch call that we built with the friends array
                 APIManager.get(fetchCall)
                     .then(events => {
+                        events.sort(function (a,b) {
+                            let dateA = new Date(a.eventDate), dateB = new Date(b.eventDate)
+                            return dateA - dateB
+                        })
                         this.setState({
                             events: events
                         })
+                    
                     })
             })
-        
+
     }
-    
+
     deleteEvent = id => {
         APIManager.delete(`events/${id}`)
-          .then(() => {
-            this.componentDidMount()
-          })
-      }
+            .then(() => {
+                this.componentDidMount()
+            })
+    }
 
     render() {
         return (
@@ -56,13 +61,13 @@ class EventList extends Component {
                 </section>
                 <div className="container-cards">
                     {this.state.events.map(event =>
-                        <EventCard
-                            key={event.id}
-                            event={event}
-                            deleteEvent={this.deleteEvent}
-                            {...this.props}
-                        />
-                    )}
+                            <EventCard
+                                key={event.id}
+                                event={event}
+                                deleteEvent={this.deleteEvent}
+                                {...this.props}
+                            />
+                        )}
                 </div>
             </>
         )
