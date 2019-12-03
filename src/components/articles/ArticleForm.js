@@ -30,7 +30,7 @@ class ArticleForm extends Component {
                 title: this.state.articleTitle,
                 url: this.state.articleURL,
                 synopsis: this.state.articleSynopsis,
-                timestamp: Date.now()
+                timestamp: new Date().toISOString()
             }
             ArticleManager.postArticle(article)
             .then(() => this.props.history.push("/articles"));
