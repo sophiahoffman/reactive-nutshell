@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FriendCard from "./FriendCard";
 import { ListGroup } from "react-bootstrap";
+import FriendSearch from "./FriendSearch";
 
 class FriendList extends Component {
   state = {
@@ -13,17 +14,20 @@ class FriendList extends Component {
   }
   render() {
     return (
-      <ListGroup>
-        {this.props.friends.map(friend => {
-          return (
-            <FriendCard
-              key={friend.id}
-              friend={friend.user}
-              deleteFriend={this.props.removeFriend}
-            />
-          );
-        })}
-      </ListGroup>
+      <>
+        <FriendSearch addFriend={this.props.addFriend} />
+        <ListGroup>
+          {this.props.friends.map(friend => {
+            return (
+              <FriendCard
+                key={friend.id}
+                friend={friend.user}
+                deleteFriend={this.props.removeFriend}
+              />
+            );
+          })}
+        </ListGroup>
+      </>
     );
   }
 }
