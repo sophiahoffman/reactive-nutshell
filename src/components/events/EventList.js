@@ -17,12 +17,24 @@ class EventList extends Component {
 
     componentDidMount() {
         const userId = localStorage.getItem("activeUser")
-        APIManager.get(`events?userId=${userId}`)
-            .then(events => {
-                this.setState({
-                    events: events
+        let friendsArray = []
+        let fetchCall = `events?userId=${userId}`
+        APIManager.get(`friends?loggedInUser=${userId}`)
+            .then(friends => {
+                friends.forEach(friend => {
+                    friendsArray.push(friend.userId)
+                    for (let i = 0; i < friendsArray.length; i++) {
+                        fetchCall += "&&userId=" + friendsArray[i]
+                    }
                 })
+                APIManager.get(fetchCall)
+                    .then(events => {
+                        this.setState({
+                            events: events
+                        })
+                    })
             })
+        
     }
 
     render() {

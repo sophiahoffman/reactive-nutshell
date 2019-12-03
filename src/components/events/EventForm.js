@@ -27,7 +27,7 @@ class EventForm extends Component {
             window.alert("Please input an event name, date, and location")
         } else {
             this.setState({ loadingStatus: true });
-            const user = localStorage.getItem("activeUser")
+            const user = localStorage.getItem("userId")
             const userId = parseInt(user)
 
             const event = {
