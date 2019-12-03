@@ -29,7 +29,14 @@ export default class ApplicationViews extends Component {
         <Route
           path="/friends"
           render={props => {
-            return <FriendList />;
+            return (
+              <FriendList
+                getFriends={this.props.getFriends}
+                addFriend={this.props.addFriend}
+                removeFriend={this.props.removeFriend}
+                friends={this.props.friends}
+              />
+            );
           }}
         />
 

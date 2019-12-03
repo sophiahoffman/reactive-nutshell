@@ -4,9 +4,8 @@ import "./Friend.css";
 
 class FriendCard extends Component {
   render() {
-    console.log(this.props.friend);
     return (
-      <ListGroup>
+      <ListGroup.Item>
         <Card className="friend">
           <Card.Body className="friend__content">
             <Card.Text className="friend__name">
@@ -23,7 +22,7 @@ class FriendCard extends Component {
             Remove Friend
           </Button>
         </Card>
-      </ListGroup>
+      </ListGroup.Item>
     );
   }
 }
