@@ -1,5 +1,7 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import TaskList from "./task/TaskList";
+import TaskForm from "./task/TaskForm"
 
 export default class ApplicationViews extends Component {
 
@@ -36,11 +38,16 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/tasks" render={props => {
-            return null
+          exact path="/tasks" render={props => {
+            return <TaskList {...props} />
             // Remove null and return the component which will show the user's tasks
           }}
         />
+
+        <Route path="/tasks/new" render={(props) => {
+          return <TaskForm {...props} />
+        }} />
+
 
         <Route
           path="/events" render={props => {
