@@ -6,6 +6,7 @@ class TaskForm extends Component {
     state = {
         taskName: "",
         expectedCompletionDate: "",
+        users: [],
         loadingStatus: false,
     };
 
@@ -14,6 +15,21 @@ class TaskForm extends Component {
         stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
     };
+
+    componentDidMount() {
+        TaskAPIManager.getAll("users")
+        .then(task => {
+            this.setState({
+                taskName: task.name,
+                expectedCompletionDate: task.expectedCompletionDate,
+                userId: task.userId,
+                loadingStatus: false,
+            });
+        });
+        TaskAPIManager.getAll("users")
+        .then(users => this.setState({
+            users: users }))
+    }
 
     /*  Local method for validation, set loadingStatus, create animal      object, invoke the AnimalManager post method, and redirect to the full animal list
     */
@@ -26,48 +42,48 @@ class TaskForm extends Component {
             const task = {
                 name: this.state.taskName,
                 expectedCompletionDate: this.state.expectedCompletionDate,
+                userId: parseInt(this.state.userId),
                 isComplete: false
             };
-
             // Create the animal and redirect user to animal list
             TaskAPIManager.post("tasks", task)
-            .then(() => this.props.history.push("/tasks"));
+                .then(() => this.props.history.push("/tasks"));
         }
     };
 
-    render(){
+    render() {
 
-        return(
+        return (
             <>
-            <form>
-                <fieldset>
-                    <div className="formgrid">
-                        <input
-                        type="text"
-                        required
-                        onChange={this.handleFieldChange}
-                        id="taskName"
-                        placeholder="task"
-                        />
-                        <label htmlFor="taskName">Name</label>
-                        <input
-                        type="date"
-                        required
-                        onChange={this.handleFieldChange}
-                        id="expectedCompletionDate"
-                        />
-                        <label htmlFor="expectedCompletionDate">Date to be completed</label>
-                    </div>
-                    <div className="alignRight">
-                        <button
-                        type="button"
-                        disabled={this.state.loadingStatus}
-                        onClick={this.constructNewTask}
-                        >Submit</button>
-                    </div>
-                </fieldset>
-            </form>
-        </>
+                <form>
+                    <fieldset>
+                        <div className="formgrid">
+                            <input
+                                type="text"
+                                required
+                                onChange={this.handleFieldChange}
+                                id="taskName"
+                                placeholder="task"
+                            />
+                            <label htmlFor="taskName">Name</label>
+                            <input
+                                type="date"
+                                required
+                                onChange={this.handleFieldChange}
+                                id="expectedCompletionDate"
+                            />
+                            <label htmlFor="expectedCompletionDate">Date to be completed</label>
+                        </div>
+                        <div className="alignRight">
+                            <button
+                                type="button"
+                                disabled={this.state.loadingStatus}
+                                onClick={this.constructNewTask}
+                            >Submit</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </>
         )
     }
 }

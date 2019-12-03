@@ -1,9 +1,11 @@
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import Login from './auth/Login'
 import TaskList from "./task/TaskList";
 import TaskForm from "./task/TaskForm"
 
 export default class ApplicationViews extends Component {
+
 
   render() {
     return (
@@ -17,9 +19,10 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          exact path="/register" render={props => {
-            return null
-            // Remove null and return the component which will handle user registration
+          exact path="/login" render={props => {
+            console.log("login route props", props)
+            return <Login setUser={this.props.setUser} searchUsers={this.props.searchUsers}
+             {...props} />
           }}
         />
 
@@ -39,10 +42,12 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/tasks" render={props => {
+            if (this.props.user) {
             return <TaskList {...props} />
-            // Remove null and return the component which will show the user's tasks
-          }}
-        />
+            }  else {
+              return <Redirect to="/login" />
+            }
+          }} />
 
         <Route path="/tasks/new" render={(props) => {
           return <TaskForm {...props} />
