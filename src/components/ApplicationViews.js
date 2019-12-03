@@ -79,8 +79,11 @@ export default class ApplicationViews extends Component {
         
         <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
+
+            console.log(props)
             return <ArticleEditForm
               {...props}
+
             />
           }}
         />

@@ -4,22 +4,22 @@ import APIManager from './APIManager'
 
 export default {
     getAllArticles() {
-        const route = `articles?_userId=${localStorage.getItem("id")}`
+        const route = `articles?userId=${localStorage.getItem("userId")}`
         return APIManager.get(route);
     },
 
-    getOneArticle(article) {
-        const route = `articles/${article.id}`;
+    getOneArticle(articleId) {
+        const route = `articles/${articleId}`;
         return APIManager.get(route);
     },
 
-    deleteArticle(article) {
-        const route = `articles/${article.id}`;
+    deleteArticle(articleId) {
+        const route = `articles/articleId`;
         return APIManager.delete(route);
     },
 
     updateArticle(article) {
-        const route = `articles/${article.id}`;
+        const route = `articles`;
         return APIManager.update(route, article);
     },
 

@@ -35,17 +35,19 @@ class ArticleList extends Component {
 
     render() {
         console.log("ARTICLE LIST: Render");
+
         return (
             <React.Fragment>
-            <div className="button-new">
+            <div className="button-new" align="center">
                 <Button variant="primary" type="button" onClick={() => this.props.history.push("articles/new")}>New Article</Button>
             </div>
-            <div className="container-cards">
+            <div className="container-cards" align="center">
                 {this.state.articles.map(article => 
                 <ArticleCard 
                 key={article.id} 
                 article={article} 
                 deleteArticle = {this.deleteArticle}
+                {...this.props}
                 /> )}
             </div>
             </React.Fragment>
