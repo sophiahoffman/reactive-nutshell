@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import EventList from './events/EventList'
 import EventForm from './events/EventForm'
+import EventEditForm from './events/EventEditForm'
 import FriendList from "./friends/FriendList"
 
 export default class ApplicationViews extends Component {
@@ -51,19 +52,22 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+        {/* Author of Events Routes: Lauren Riddle */}
         <Route exact
           path="/events" render={props => {
             return <EventList {...props} />
-            // Remove null and return the component which will show the user's events
           }}
         />
 
-        <Route
+        <Route exact
           path="/events/new" render={props => {
             return <EventForm {...props} />
-            // Remove null and return the component which will show the user's events
           }}
         />
+
+        <Route path="/events/:eventId(\d+)/edit" render={props => {
+          return <EventEditForm {...props} />
+        }} />
 
       </React.Fragment>
     );

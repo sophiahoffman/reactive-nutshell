@@ -57,7 +57,7 @@ class EventForm extends Component {
                             type="button"
                             disabled={this.state.loadingStatus}
                             onClick={this.constructNewEvent}
-                        >Submit</Button>
+                        >Create Event</Button>
                     </Form>
                 </div>
             </>
