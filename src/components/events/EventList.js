@@ -4,7 +4,7 @@ Purpose: to render the event cards  when the URL is changed to http://localhost:
 */
 
 import React, { Component } from 'react'
-import EventCard from './EventCard'
+import { NextEventCard, RegularEventCard } from './EventCard'
 import APIManager from '../../modules/APIManager'
 import { Button } from 'react-bootstrap';
 import './Events.css'
@@ -33,14 +33,14 @@ class EventList extends Component {
                 // get all events using the fetch call that we built with the friends array
                 APIManager.get(fetchCall)
                     .then(events => {
-                        events.sort(function (a,b) {
+                        events.sort(function (a, b) {
                             let dateA = new Date(a.eventDate), dateB = new Date(b.eventDate)
                             return dateA - dateB
                         })
                         this.setState({
                             events: events
                         })
-                    
+
                     })
             })
 
@@ -59,15 +59,24 @@ class EventList extends Component {
                 <section className="events-section-content">
                     <Button type="button" className="newEventBtn" onClick={() => { this.props.history.push("/events/new") }}>Create New Event</Button>
                 </section>
-                <div className="container-cards">
-                    {this.state.events.map(event =>
-                            <EventCard
-                                key={event.id}
-                                event={event}
-                                deleteEvent={this.deleteEvent}
-                                {...this.props}
-                            />
-                        )}
+                <div className="event-container-cards">
+                    {this.state.events.map((event, index) => { 
+                    if(index === 0){
+                    return <NextEventCard
+                        key = { event.id }
+                        event = { event }
+                        deleteEvent = { this.deleteEvent }
+                        {...this.props}
+                    />
+                    } else {
+                        return <RegularEventCard
+                        key = { event.id }
+                        event = { event }
+                        deleteEvent = { this.deleteEvent }
+                        {...this.props}
+                    />
+                    }
+                })}
                 </div>
             </>
         )
