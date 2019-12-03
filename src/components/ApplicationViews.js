@@ -1,6 +1,8 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
 import FriendList from "./friends/FriendList";
+import EventList from "./events/EventList";
+import EventForm from "./events/EventForm";
 
 export default class ApplicationViews extends Component {
   render() {
@@ -48,9 +50,18 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
+          exact
           path="/events"
           render={props => {
-            return null;
+            return <EventList {...props} />;
+            // Remove null and return the component which will show the user's events
+          }}
+        />
+
+        <Route
+          path="/events/new"
+          render={props => {
+            return <EventForm {...props} />;
             // Remove null and return the component which will show the user's events
           }}
         />
