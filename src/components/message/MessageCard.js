@@ -20,7 +20,7 @@ class MessageCard extends Component {
     saveMessage = () => {
         const newMessageObj = {
             id: this.state.messageObj.id,
-            userId: this.state.messageObj.userId,
+            userId: this.props.getUser.id,
             message: this.state.newMessage,
             timestamp: this.state.messageObj.timestamp
         }
@@ -44,10 +44,12 @@ class MessageCard extends Component {
             messageObj: this.props.message,
             newMessage: this.props.message.message
         })
+        console.log("this.props", this.props)
     }
 
     render() {
-        if(this.state.editMode === false) {
+        if(this.props.message.userId === this.props.getUser.id &&
+            this.state.editMode === false) {
             return (
                 <Card>
                     <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
@@ -56,7 +58,8 @@ class MessageCard extends Component {
                     <button onClick={this.editMessage}>Edit</button>
                 </Card>
             )
-        } else {
+        } else if(this.props.message.userId === this.props.getUser.id &&
+            this.state.editMode === true)  {
             return (
                 <Card>
                     <span>{this.props.message.user.fullName} - </span>
@@ -66,6 +69,14 @@ class MessageCard extends Component {
                         {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
                     <button onClick={this.editMessage}>Edit</button>
                     <button onClick={this.saveMessage}>Save</button>
+                </Card>
+            )
+        } else {
+            return (
+                <Card>
+                    <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
+                    <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
+                        {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
                 </Card>
             )
         }

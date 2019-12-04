@@ -48,7 +48,11 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/messages" render={props => {
-            return <MessageList {...props} />
+            if (this.props.user) {
+                return <MessageList {...props} {...this.props} />
+              }  else {
+                return <Redirect to="/login" />
+              }
           }}
         />
 
