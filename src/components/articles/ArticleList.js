@@ -15,20 +15,6 @@ class ArticleList extends Component {
 
     componentDidMount() {
         console.log("ARTICLE LIST: ComponentDidMount");
-        // let friendsArray = []
-        // ArticleManager.getFriends()
-        // .then(results => {
-        //     console.log(results)
-        //     results.forEach(result => friendsArray.push(result.userId));
-        //     return friendsArray
-        // })
-        // .then(result => 
-        //     ArticleManager.getArticles(result))
-        // .then(articles => {
-        //     this.setState({
-        //         articles: articles,
-        //     })
-        // })
         this.setArticleState()
     }
 
@@ -52,38 +38,7 @@ class ArticleList extends Component {
     deleteArticle = articleId => {
         ArticleManager.deleteArticle(articleId)
         .then(this.setArticleState)
-        // .then(() => {
-        //     ArticleManager.getArticles()
-        //     .then((newArticles) => {
-        //         this.setState({
-        //             articles: newArticles
-        //         })
-        //     })
-        // })
     }
-
-    // componentDidMount() {
-    //     console.log("ARTICLE LIST: ComponentDidMount");
-    //     ArticleManager.getUserArticles()
-    //     .then(articles => {
-    //         console.log(articles)
-    //         this.setState({
-    //             articles: articles,
-    //         })
-    //     })
-    // }
-
-    // deleteArticle = articleId => {
-    //     ArticleManager.deleteArticle(articleId)
-    //     .then(() => {
-    //         ArticleManager.getUserArticles()
-    //         .then((newArticles) => {
-    //             this.setState({
-    //                 articles: newArticles
-    //             })
-    //         })
-    //     })
-    // }
 
     render() {
         console.log("ARTICLE LIST: Render");
