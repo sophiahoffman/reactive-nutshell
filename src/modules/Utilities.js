@@ -3,6 +3,11 @@
     Author(s): Chase Fite
 */
 
+export function createDateTimeToISO() {
+    const newDate = new Date()
+    return newDate.toISOString()
+}
+
 export function convertDateTimeFromISO(date) {
     return new Date(date)
 }
