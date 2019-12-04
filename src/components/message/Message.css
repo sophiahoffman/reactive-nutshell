@@ -1,0 +1,6 @@
+/* would be nice to have timestamp in small gray font */
+
+.timestamp {
+    font-size: 10px;
+    color: grey;
+}
