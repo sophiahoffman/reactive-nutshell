@@ -10,7 +10,7 @@ import './ArticleCards.css';
 
 class ArticleCards extends Component {
 
-
+// renders different card depending on if it's the logged in user or friend article
     render() {
         const loggedInUser = localStorage.getItem("userId");
         if (Number(loggedInUser) === Number(this.props.article.userId)) {
@@ -34,7 +34,6 @@ class ArticleCards extends Component {
                 <div className="card">
                     <Card>
                         <div className = "card-content friendCard">
-                        {/* <div className="friendCard"> */}
                             <Card.Body>
                                 <h2>{this.props.article.title}</h2>
                                 <h3><a href={this.props.article.url}>{this.props.article.url}</a></h3>
