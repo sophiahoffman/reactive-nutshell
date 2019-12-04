@@ -9,12 +9,6 @@ class MessageForm extends Component {
         message: ""
     }
 
-    handleFieldChange = evt => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
-
     createNewMessage = evt => {
         evt.preventDefault()
 
@@ -35,6 +29,12 @@ class MessageForm extends Component {
                 message: ""
             })
         }
+    }
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
     }
 
     render() {
