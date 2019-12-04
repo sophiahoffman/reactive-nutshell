@@ -1,5 +1,8 @@
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
+import Login from './auth/Login'
+import TaskList from "./task/TaskList";
+import TaskForm from "./task/TaskForm"
 import MessageList from "./message/MessageList"
 import ArticleList from "./articles/ArticleList";
 import ArticleForm from "./articles/ArticleForm";
@@ -10,6 +13,7 @@ import EventEditForm from './events/EventEditForm'
 import FriendList from "./friends/FriendList"
 
 export default class ApplicationViews extends Component {
+
 
   render() {
     return (
@@ -23,9 +27,9 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          exact path="/register" render={props => {
-            return null
-            // Remove null and return the component which will handle user registration
+          exact path="/login" render={props => {
+            return <Login setUser={this.props.setUser} searchUsers={this.props.searchUsers}
+             {...props} {...this.props} />
           }}
         />
 
@@ -49,11 +53,18 @@ export default class ApplicationViews extends Component {
         />
 
         <Route
-          path="/tasks" render={props => {
-            return null
-            // Remove null and return the component which will show the user's tasks
-          }}
-        />
+          exact path="/tasks" render={props => {
+            if (this.props.user) {
+            return <TaskList {...props} {...this.props} />
+            }  else {
+              return <Redirect to="/login" />
+            }
+          }} />
+
+        <Route path="/tasks/new" render={(props) => {
+          return <TaskForm {...props} {...this.props} />
+        }} />
+
 
         {/* Author of Events Routes: Lauren Riddle */}
         <Route exact
