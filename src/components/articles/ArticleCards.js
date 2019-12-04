@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import { Card , Button } from 'react-bootstrap'
+import { Card , Button } from 'react-bootstrap';
+import './ArticleCards.css';
 
 
 
@@ -32,12 +33,14 @@ class ArticleCards extends Component {
             return (
                 <div className="card">
                     <Card>
-                        <div className = "card-content">
+                        <div className = "card-content friendCard">
+                        {/* <div className="friendCard"> */}
                             <Card.Body>
                                 <h2>{this.props.article.title}</h2>
                                 <h3>{this.props.article.url}</h3>
                                 <h3>{this.props.article.synopsis}</h3>
                             </Card.Body>
+                            {/* </div> */}
                         </div>
                     </Card>
                 </div>

@@ -5,36 +5,85 @@ import React, { Component } from 'react';
 import ArticleCards from './ArticleCards';
 import ArticleManager from '../../modules/ArticleManager';
 import { Button } from 'react-bootstrap';
+import './ArticleCards.css';
 
 
 class ArticleList extends Component {
     state = {
-        articles:[],
-        userId: localStorage.getItem("userId")
+        articles:[]
     }
 
     componentDidMount() {
         console.log("ARTICLE LIST: ComponentDidMount");
-        ArticleManager.getUserArticles(this.state.userId)
+        // let friendsArray = []
+        // ArticleManager.getFriends()
+        // .then(results => {
+        //     console.log(results)
+        //     results.forEach(result => friendsArray.push(result.userId));
+        //     return friendsArray
+        // })
+        // .then(result => 
+        //     ArticleManager.getArticles(result))
+        // .then(articles => {
+        //     this.setState({
+        //         articles: articles,
+        //     })
+        // })
+        this.setArticleState()
+    }
+
+    // function to allow for rerendering with friends news articles
+    setArticleState = () => {
+        let friendsArray = []
+        ArticleManager.getFriends()
+        .then(results => {
+            results.forEach(result => friendsArray.push(result.userId));
+            return friendsArray
+        })
+        .then(result => ArticleManager.getArticles(result))
         .then(articles => {
-            console.log(articles)
             this.setState({
                 articles: articles,
             })
         })
+
     }
 
-    deleteArticle = article => {
-        ArticleManager.deleteArticle(article)
-        .then(() => {
-            ArticleManager.getUserArticles(this.state.userId)
-            .then((newArticles) => {
-                this.setState({
-                    articles: newArticles
-                })
-            })
-        })
+    deleteArticle = articleId => {
+        ArticleManager.deleteArticle(articleId)
+        .then(this.setArticleState)
+        // .then(() => {
+        //     ArticleManager.getArticles()
+        //     .then((newArticles) => {
+        //         this.setState({
+        //             articles: newArticles
+        //         })
+        //     })
+        // })
     }
+
+    // componentDidMount() {
+    //     console.log("ARTICLE LIST: ComponentDidMount");
+    //     ArticleManager.getUserArticles()
+    //     .then(articles => {
+    //         console.log(articles)
+    //         this.setState({
+    //             articles: articles,
+    //         })
+    //     })
+    // }
+
+    // deleteArticle = articleId => {
+    //     ArticleManager.deleteArticle(articleId)
+    //     .then(() => {
+    //         ArticleManager.getUserArticles()
+    //         .then((newArticles) => {
+    //             this.setState({
+    //                 articles: newArticles
+    //             })
+    //         })
+    //     })
+    // }
 
     render() {
         console.log("ARTICLE LIST: Render");
