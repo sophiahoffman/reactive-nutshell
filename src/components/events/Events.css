@@ -1,0 +1,30 @@
+.events-section-content {
+text-align: center;
+padding: 10px;
+}
+#newEventForm {
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 4px 4px 4px 4px lightgray;
+}
+.eventCard {
+    flex-basis: 80%;
+    margin: 10px;
+    text-align: center;
+}
+ .nextEvent {
+    flex-basis: 90%;
+    background-color: lightgray;
+    font-weight: bold;
+    font-size: larger;
+    border: 1px solid #007BFF;
+    text-align: center;
+}
+.event-container-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.events-button {
+    margin: 10px; 
+}
