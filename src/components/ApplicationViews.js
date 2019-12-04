@@ -68,6 +68,7 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+{/* path to articles page renders all articles of user and user's friends */}
         <Route
           exact path="/articles" render={props => {
             return <ArticleList 
@@ -76,6 +77,7 @@ export default class ApplicationViews extends Component {
           }}
         />
 
+{/* path to create new article is a form */}
         <Route
           path="/articles/new" render={props => {
             return <ArticleForm
@@ -83,7 +85,8 @@ export default class ApplicationViews extends Component {
             />
           }}
         />
-        
+
+{/* path to update article is a form         */}
         <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
 

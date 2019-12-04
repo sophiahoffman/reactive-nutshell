@@ -1,3 +1,5 @@
+// Author: Sophia Hoffman
+
 import React, { Component } from 'react';
 import ArticleManager from '../../modules/ArticleManager';
 import { Form, Button } from 'react-bootstrap';
@@ -45,7 +47,7 @@ class ArticleEditForm extends Component {
         } else {
             this.setState ({ loadingStatus: true});
             const editedArticle = {
-                id: this.state.articleId,
+                id: Number(this.state.articleId),
                 title: this.state.articleTitle,
                 url: this.state.articleURL,
                 synopsis: this.state.articleSynopsis,
@@ -79,7 +81,7 @@ class ArticleEditForm extends Component {
                 <Form.Control type="text" id="articleSynopsis" 
                 default value={this.state.articleSynopsis} onChange={this.handleFieldChange}  />
             </Form.Group>
-            <Button variant="primary" type="button" onClick={this.updateExistingArticle}>
+            <Button variant="primary" type="button" disabled={this.loadingStatus} onClick={this.updateExistingArticle}>
                 Submit
             </Button>
         </Form>
