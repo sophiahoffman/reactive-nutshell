@@ -4,7 +4,7 @@ import ApplicationViews from "../ApplicationViews";
 
 class FriendWrapper extends Component {
   state = {
-    friends: []
+    friends: [],
   };
   componentDidMount() {
     this.getFriends();
@@ -61,6 +61,7 @@ class FriendWrapper extends Component {
         addFriend={this.addFriend}
         removeFriend={this.removeFriend}
         getFriends={this.getFriends}
+        {...this.props}
       />
     );
   }
