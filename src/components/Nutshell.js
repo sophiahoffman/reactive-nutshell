@@ -29,6 +29,10 @@ class Nutshell extends Component {
       "credentials",
       JSON.stringify(authObj)
     )
+    localStorage.setItem(
+      "userId",
+      JSON.stringify(authObj.id)
+    )
     this.setState({
       user: this.isAuthenticated(),
     });
