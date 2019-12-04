@@ -67,7 +67,6 @@ class MessageCard extends Component {
                         defaultValue={this.props.message.message}></textarea>
                     <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                         {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
-                    <button onClick={this.editMessage}>Edit</button>
                     <button onClick={this.saveMessage}>Save</button>
                 </Card>
             )
