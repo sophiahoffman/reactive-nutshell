@@ -31,6 +31,15 @@ export default {
             body: JSON.stringify(editedItem)
         }).then(data => data.json());
     },
+    updateSingleSection(items, editedItem) {
+        return fetch(`${remoteURL}/${items}/${editedItem.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedItem)
+        }).then(data => data.json());
+    },
     // fetch to search users
     searchUser: (searchAll) => {
         return fetch(`${remoteURL}/users?&q=${searchAll}`)

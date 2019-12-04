@@ -60,10 +60,10 @@ class Nutshell extends Component {
         <NavBar user={this.state.user}
           clearUser={this.clearUser} />
         <FriendWrapper
-        user={this.state.user}
-        setUser={this.setUser}
-        searchUsers={this.searchUsers}
-        getUser={this.getUser} />
+          user={this.state.user}
+          setUser={this.setUser}
+          searchUsers={this.searchUsers}
+          getUser={this.getUser} />
       </React.Fragment>
     );
   }

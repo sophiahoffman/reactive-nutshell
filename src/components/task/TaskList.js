@@ -8,16 +8,18 @@ class TaskList extends Component {
     //define what this component needs to render
     state = {
         tasks: [],
-        userId: this.props.getUser
+        userId: ""
+
 
     }
 
     componentDidMount() {
-        TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${this.props.getUser.id}`)
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
+        TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${currentUser.id}`)
             .then((tasks) => {
                 this.setState({
                     tasks: tasks,
-                    userId: this.props.getUser.id
+                    userId: currentUser.id
                 })
             })
     }
@@ -34,6 +36,24 @@ class TaskList extends Component {
             })
     }
 
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
+    }
+
+    completeTask= (id)  => {
+        console.log("trying to find id", id)
+        this.setState({ loadingStatus: true });
+        const completedTask = {
+            isComplete: true,
+            id: id
+        };
+        TaskAPIManager.updateSingleSection("tasks", completedTask)
+            .then(() => this.props.history.push("/tasks"))
+    }
+
     render() {
 
         return (
@@ -48,6 +68,7 @@ class TaskList extends Component {
                             key={task.id}
                             task={task}
                             deleteTask={this.deleteTask}
+                            completeTask={this.completeTask}
                             {...this.props} />
                     )}
                 </div>
