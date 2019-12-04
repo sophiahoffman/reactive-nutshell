@@ -7,6 +7,8 @@ class TaskCard extends Component {
         <div className="card-content">
           <h3>To Do: <span className="card-taskname">{this.props.task.name}</span></h3>
           <p>{this.props.task.expectedCompletionDate}</p>
+          <button type="button"
+            onClick={() => { this.props.history.push(`/tasks/${this.props.task.id}/edit`) }}>Edit</button>
           <button type="button" onClick={() => this.props.deleteTask(this.props.task.id)}>Give Up</button>
         </div>
       </div>

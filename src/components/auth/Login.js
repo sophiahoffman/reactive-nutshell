@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import TaskAPIManager from '../../modules/TaskAPIManager'
-import FriendWrapper from '../friends/FriendWrapper'
 
 class Login extends Component {
 
