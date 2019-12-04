@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
 class NavBar extends Component {
     render() {
         return (
@@ -27,7 +26,7 @@ class NavBar extends Component {
                 <span className="navbar-text">
                     <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
+                            <Link className="nav-link" to="/login">Log In</Link>
                         </li>
                     </ul>
                 </span>

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { InputGroup, Button } from "react-bootstrap";
 import APIManager from "../../modules/APIManager";
+import { Typeahead } from "react-bootstrap-typeahead";
+import "react-bootstrap-typeahead/css/Typeahead.css";
 
 class FriendSearch extends Component {
   state = {
+    users: [],
     input: ""
   };
   handleInputChange = evt => {
@@ -24,14 +27,22 @@ class FriendSearch extends Component {
       }
     });
   };
+  componentDidMount() {
+    APIManager.get("users").then(users =>
+      this.setState({ users: users.map(user => user.fullName) })
+    );
+  }
   render() {
     return (
       <InputGroup className="friend__search">
-        <FormControl
-          placeholder="Add a new friend"
-          id="friend-search-input"
-          onChange={this.handleInputChange}
-        />
+        <Typeahead
+        id="typeahead-users"
+          labelKey="name"
+          options={this.state.users}
+          onChange={input => {
+            this.setState({ input: input });
+          }}
+          placeholder="Select a person..."></Typeahead>
         <InputGroup.Append>
           <Button variant="success" onClick={this.searchAndAddFriend}>
             Add
