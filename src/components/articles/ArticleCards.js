@@ -20,7 +20,7 @@ class ArticleCards extends Component {
                         <div className = "card-content">
                             <Card.Body>
                                 <h2>{this.props.article.title}</h2>
-                                <h3>{this.props.article.url}</h3>
+                                <h3><a href={this.props.article.url}>{this.props.article.url}</a></h3>
                                 <h3>{this.props.article.synopsis}</h3>
                                 <Button variant="primary" type="button" onClick={() => this.props.history.push(`/articles/${this.props.article.id}/edit`)}>Edit</Button>
                                 <Button variant="primary" type="button" onClick={() => this.props.deleteArticle(this.props.article.id)}>Delete</Button>
@@ -37,7 +37,7 @@ class ArticleCards extends Component {
                         {/* <div className="friendCard"> */}
                             <Card.Body>
                                 <h2>{this.props.article.title}</h2>
-                                <h3>{this.props.article.url}</h3>
+                                <h3><a href={this.props.article.url}>{this.props.article.url}</a></h3>
                                 <h3>{this.props.article.synopsis}</h3>
                             </Card.Body>
                             {/* </div> */}
