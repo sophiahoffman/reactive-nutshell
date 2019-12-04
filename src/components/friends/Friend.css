@@ -1,0 +1,7 @@
+.friends__list {
+  display: flex;
+}
+
+.friends__card {
+  flex: 0 1 32%;
+}

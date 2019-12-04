@@ -35,14 +35,18 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            return (
-              <FriendList
-                getFriends={this.props.getFriends}
-                addFriend={this.props.addFriend}
-                removeFriend={this.props.removeFriend}
-                friends={this.props.friends}
-              />
-            );
+            if(this.props.user) {
+              return (
+                <FriendList
+                  getFriends={this.props.getFriends}
+                  addFriend={this.props.addFriend}
+                  removeFriend={this.props.removeFriend}
+                  friends={this.props.friends}
+                />
+              );
+            } else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
