@@ -143,76 +143,76 @@
     {
       "id": 1,
       "userId": 1,
-      "task": "Clean the shed",
+      "name": "Clean the shed",
       "expectedCompletionDate": "2019-04-17",
       "isComplete": false
     },
     {
       "id": 2,
       "userId": 2,
-      "task": "replace the kitchen pipes",
+      "name": "replace the kitchen pipes",
       "expectedCompletionDate": "2019-04-18",
       "isComplete": false
     },
     {
       "id": 3,
       "userId": 2,
-      "task": "Put away the dishes",
+      "name": "Put away the dishes",
       "expectedCompletionDate": "2019-04-19",
       "isComplete": false
     },
     {
       "id": 4,
       "userId": 3,
-      "task": "Kick the can",
+      "name": "Kick the can",
       "expectedCompletionDate": "2019-04-20",
       "isComplete": false
     },
     {
       "id": 5,
       "userId": 4,
-      "task": "Fire the butler",
+      "name": "Fire the butler",
       "expectedCompletionDate": "2019-04-21",
       "isComplete": false
     },
     {
       "userId": 2,
-      "task": "Find that ring",
+      "name": "Find that ring",
       "expectedCompletionDate": "2019-11-16",
       "isComplete": false,
       "id": 6
     },
     {
       "userId": 2,
-      "task": "Eat Second Breakfast",
+      "name": "Eat Second Breakfast",
       "expectedCompletionDate": "2019-11-12",
       "isComplete": false,
       "id": 7
     },
     {
       "userId": 2,
-      "task": "Finish capstone project",
+      "name": "Finish capstone project",
       "expectedCompletionDate": "2019-12-31",
       "isComplete": false,
       "id": 8
     },
     {
       "userId": 2,
-      "task": "Eat a pi",
+      "name": "Eat a pi",
       "expectedCompletionDate": "1592-03-14",
       "isComplete": false,
       "id": 9
     },
     {
       "userId": 3,
-      "task": "Chew some fish",
+      "name": "Chew some fish",
       "expectedCompletionDate": "2019-11-15",
       "isComplete": false,
       "id": 10
     },
     {
       "userId": 3,
-      "task": "Watch IT Crowd again",
+      "name": "Watch IT Crowd again",
       "expectedCompletionDate": "2019-11-16",
       "isComplete": false,
       "id": 11

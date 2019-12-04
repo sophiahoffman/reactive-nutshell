@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
+import MessageList from "./message/MessageList"
 import ArticleList from "./articles/ArticleList";
 import ArticleForm from "./articles/ArticleForm";
 import ArticleEditForm from "./articles/ArticleEditForm";
@@ -43,8 +44,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/messages" render={props => {
-            return null
-            // Remove null and return the component which will show the messages
+            return <MessageList />
           }}
         />
 
