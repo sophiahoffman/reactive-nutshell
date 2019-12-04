@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <Router>
-      <Nutshell />
+    <Nutshell />
   </Router>
-  , document.getElementById('root'))
+  , document.getElementById('root')
+)

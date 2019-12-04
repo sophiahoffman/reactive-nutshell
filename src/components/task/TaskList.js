@@ -8,7 +8,7 @@ class TaskList extends Component {
     //define what this component needs to render
     state = {
         tasks: [],
-        userId: this.props.getUser.id
+        userId: this.props.getUser
 
     }
 
@@ -18,7 +18,8 @@ class TaskList extends Component {
         TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${this.props.getUser.id}`)
             .then((tasks) => {
                 this.setState({
-                    tasks: tasks
+                    tasks: tasks,
+                    userId: this.props.getUser.id
                 })
             })
     }

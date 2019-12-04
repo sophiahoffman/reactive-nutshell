@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
-import ApplicationViews from "./ApplicationViews";
+import FriendWrapper from "./friends/FriendWrapper";
 import "./Nutshell.css";
+import ApplicationViews from "./ApplicationViews"
 
 class Nutshell extends Component {
 
@@ -29,7 +30,7 @@ class Nutshell extends Component {
       JSON.stringify(authObj)
     )
     this.setState({
-      user: this.isAuthenticated()
+      user: this.isAuthenticated(),
     });
   }
 
@@ -50,16 +51,15 @@ class Nutshell extends Component {
   }
 
   render() {
-    console.log("nutshell render", this.state.user)
     return (
       <React.Fragment>
         <NavBar user={this.state.user}
           clearUser={this.clearUser} />
-        <ApplicationViews user={this.state.user}
-          setUser={this.setUser}
-          searchUsers={this.searchUsers}
-          getUser={this.getUser}
-        />
+        <FriendWrapper
+        user={this.state.user}
+        setUser={this.setUser}
+        searchUsers={this.searchUsers}
+        getUser={this.getUser} />
       </React.Fragment>
     );
   }

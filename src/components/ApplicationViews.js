@@ -3,6 +3,13 @@ import React, { Component } from "react";
 import Login from './auth/Login'
 import TaskList from "./task/TaskList";
 import TaskForm from "./task/TaskForm"
+import ArticleList from "./articles/ArticleList";
+import ArticleForm from "./articles/ArticleForm";
+import ArticleEditForm from "./articles/ArticleEditForm";
+import EventList from './events/EventList'
+import EventForm from './events/EventForm'
+import EventEditForm from './events/EventEditForm'
+import FriendList from "./friends/FriendList"
 
 export default class ApplicationViews extends Component {
 
@@ -20,16 +27,21 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/login" render={props => {
-            console.log("login route props", props)
             return <Login setUser={this.props.setUser} searchUsers={this.props.searchUsers}
-             {...props} />
+             {...props} {...this.props} />
           }}
         />
 
         <Route
           path="/friends" render={props => {
-            return null
-            // Remove null and return the component which will show list of friends
+            return (
+              <FriendList
+                getFriends={this.props.getFriends}
+                addFriend={this.props.addFriend}
+                removeFriend={this.props.removeFriend}
+                friends={this.props.friends}
+              />
+            );
           }}
         />
 
@@ -54,12 +66,48 @@ export default class ApplicationViews extends Component {
         }} />
 
 
-        <Route
+        {/* Author of Events Routes: Lauren Riddle */}
+        <Route exact
           path="/events" render={props => {
-            return null
-            // Remove null and return the component which will show the user's events
+            return <EventList {...props} />
           }}
         />
+
+        <Route exact
+          path="/events/new" render={props => {
+            return <EventForm {...props} />
+          }}
+        />
+
+        <Route
+          exact path="/articles" render={props => {
+            return <ArticleList 
+              {...props}
+            />
+          }}
+        />
+
+        <Route
+          path="/articles/new" render={props => {
+            return <ArticleForm
+              {...props}
+            />
+          }}
+        />
+        
+        <Route
+          path="/articles/:articleId(\d+)/edit" render={props => {
+
+            console.log(props)
+            return <ArticleEditForm
+              {...props}
+
+            />
+          }}
+        />
+        <Route path="/events/:eventId(\d+)/edit" render={props => {
+          return <EventEditForm {...props} />
+        }} />
 
       </React.Fragment>
     );
