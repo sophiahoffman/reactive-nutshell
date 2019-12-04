@@ -13,8 +13,6 @@ class TaskList extends Component {
     }
 
     componentDidMount() {
-        console.log("Task LIST: ComponentDidMount", this.props);
-        //getAll from AnimalManager and hang on to that data; put it in state
         TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${this.props.getUser.id}`)
             .then((tasks) => {
                 this.setState({
@@ -37,20 +35,20 @@ class TaskList extends Component {
     }
 
     render() {
-        console.log("Task LIST2: Render", this.state);
 
         return (
             <>
                 <Button variant="primary"
-                className="btn"
-                onClick={() => {this.props.history.push("/tasks/new")}}
+                    className="btn"
+                    onClick={() => { this.props.history.push("/tasks/new") }}
                 >New Task</Button>
                 <div className="container-cards">
                     {this.state.tasks.map(task =>
                         <TaskCard
                             key={task.id}
                             task={task}
-                            deleteTask={this.deleteTask} />
+                            deleteTask={this.deleteTask}
+                            {...this.props} />
                     )}
                 </div>
             </>
