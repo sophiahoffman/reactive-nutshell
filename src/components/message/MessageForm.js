@@ -9,12 +9,6 @@ class MessageForm extends Component {
         message: ""
     }
 
-    handleFieldChange = evt => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
-
     createNewMessage = evt => {
         evt.preventDefault()
 
@@ -26,13 +20,21 @@ class MessageForm extends Component {
                     "message": this.state.message,
                     "timestamp": createDateTimeToISO()
             }
-            console.log(newMessage)
 
             APIManager.post("messages", newMessage)
             .then(messagePosted => {
                 this.props.updateMessageArray(messagePosted)
             })
+            this.setState({
+                message: ""
+            })
         }
+    }
+
+    handleFieldChange = evt => {
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
     }
 
     render() {
@@ -40,7 +42,7 @@ class MessageForm extends Component {
             <form>
                 <label>New Message</label>
                 <textarea className="form-control" onChange={this.handleFieldChange} required
-                    id="message"></textarea>
+                    id="message" value={this.state.message}></textarea>
                 <button onClick={this.createNewMessage}>Submit</button>
             </form>
         )}

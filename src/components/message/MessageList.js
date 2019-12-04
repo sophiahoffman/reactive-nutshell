@@ -6,7 +6,8 @@ import MessageForm from "./MessageForm"
 class MessageList extends Component {
 
     state = {
-        messages: []
+        messages: [],
+        editMode: false
     }
 
     componentDidMount = () => {
@@ -39,6 +40,9 @@ class MessageList extends Component {
                         <MessageCard 
                             key={message.id}
                             message={message}
+                            updateMessageArray={this.updateMessageArray}
+                            editMessage={this.editMessage}
+                            {...this.props}
                         />
                     )}
                 </div>
