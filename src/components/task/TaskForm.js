@@ -16,21 +16,6 @@ class TaskForm extends Component {
         this.setState(stateToChange);
     };
 
-    componentDidMount() {
-        TaskAPIManager.getAll("users")
-        .then(task => {
-            this.setState({
-                taskName: task.name,
-                expectedCompletionDate: task.expectedCompletionDate,
-                userId: task.userId,
-                loadingStatus: false,
-            });
-        });
-        TaskAPIManager.getAll("users")
-        .then(users => this.setState({
-            users: users }))
-    }
-
     /*  Local method for validation, set loadingStatus, create animal      object, invoke the AnimalManager post method, and redirect to the full animal list
     */
     constructNewTask = evt => {
@@ -38,11 +23,14 @@ class TaskForm extends Component {
         if (this.state.taskName === "" || this.state.expectedCompletionDate === "") {
             window.alert("Please fill out all fields");
         } else {
+            console.log("this.props in task form", this.props.getUser.id)
             this.setState({ loadingStatus: true });
+            // const userVal = this.props.getUser("credentials")
+            // console.log("userVal", userVal)
             const task = {
                 name: this.state.taskName,
                 expectedCompletionDate: this.state.expectedCompletionDate,
-                userId: parseInt(this.state.userId),
+                userId: this.props.getUser.id,
                 isComplete: false
             };
             // Create the animal and redirect user to animal list
@@ -52,7 +40,6 @@ class TaskForm extends Component {
     };
 
     render() {
-
         return (
             <>
                 <form>

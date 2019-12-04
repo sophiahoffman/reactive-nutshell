@@ -13,7 +13,7 @@ class TaskList extends Component {
     componentDidMount() {
         console.log("Task LIST: ComponentDidMount");
         //getAll from AnimalManager and hang on to that data; put it in state
-        TaskAPIManager.getAll("tasks?isComplete=false&_sort=expectedCompletionDate")
+        TaskAPIManager.getAll(`tasks?userId=${this.props.getUser.id}`)
             .then((tasks) => {
                 this.setState({
                     tasks: tasks

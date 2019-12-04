@@ -15,7 +15,7 @@ class Nutshell extends Component {
   //returns true/false
   isAuthenticated = () => localStorage.getItem("credentials") !== null
 
-  setUser(authObj) {
+  setUser = authObj => {
     /*
       For now, just store the email and password that
       the customer enters into local storage.
@@ -26,12 +26,14 @@ class Nutshell extends Component {
     // )
     localStorage.setItem(
       "credentials",
-      authObj
+      JSON.stringify(authObj)
     )
     this.setState({
       user: this.isAuthenticated()
     });
   }
+
+  getUser = JSON.parse(localStorage.getItem("credentials"))
 
   clearUser = () => {
     localStorage.removeItem("credentials")
@@ -48,6 +50,7 @@ class Nutshell extends Component {
   }
 
   render() {
+    console.log("nutshell render", this.state.user)
     return (
       <React.Fragment>
         <NavBar user={this.state.user}
@@ -55,6 +58,7 @@ class Nutshell extends Component {
         <ApplicationViews user={this.state.user}
           setUser={this.setUser}
           searchUsers={this.searchUsers}
+          getUser={this.getUser}
         />
       </React.Fragment>
     );

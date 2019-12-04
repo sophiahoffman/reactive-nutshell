@@ -23,10 +23,11 @@ class Login extends Component {
         TaskAPIManager.searchUser(this.state.fullName)
             .then((existingUser) => {
                 if (existingUser.length > 0) {
-                    e.preventDefault()
-                    this.setUser(existingUser[0].id)
+                    {window.alert("welcome back to Nutshell!")}
+                    { this.props.setUser(existingUser[0])}
                     { this.props.history.push("/tasks") }
                 } else {
+                    {window.alert("welcome to Nutshell!")}
                     this.setState({ loadingStatus: true });
                     const user = {
                         fullName: this.state.fullName,
@@ -35,6 +36,8 @@ class Login extends Component {
                     };
                     TaskAPIManager.post("users", user)
                         .then(newUser => {
+                            console.log("new user", newUser)
+                            this.props.setUser(newUser)
                             this.props.history.push("/tasks")
                         })
                 }
@@ -47,15 +50,8 @@ class Login extends Component {
             For now, just store the email and password that
             the customer enters into local storage.
         */
-        this.props.setUser({email: this.state.email, password: this.state.password})
-        // localStorage.setItem(
-        //     "credentials",
-        //     JSON.stringify({
-        //         fullName: this.state.fullName,
-        //         email: this.state.email,
-        //         password: this.state.password
-        //     })
-        // )
+        this.searchUsers()
+        this.props.setUser({ email: this.state.email, password: this.state.password })
         this.props.history.push("/tasks");
 
     }

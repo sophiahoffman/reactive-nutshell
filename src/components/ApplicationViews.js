@@ -43,14 +43,14 @@ export default class ApplicationViews extends Component {
         <Route
           exact path="/tasks" render={props => {
             if (this.props.user) {
-            return <TaskList {...props} />
+            return <TaskList {...props} {...this.props} />
             }  else {
               return <Redirect to="/login" />
             }
           }} />
 
         <Route path="/tasks/new" render={(props) => {
-          return <TaskForm {...props} />
+          return <TaskForm {...props} {...this.props} />
         }} />
 
 
