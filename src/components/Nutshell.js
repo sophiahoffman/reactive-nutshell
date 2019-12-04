@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
-import ApplicationViews from "./ApplicationViews";
+import FriendWrapper from "./friends/FriendWrapper";
 import "./Nutshell.css";
 
 class Nutshell extends Component {
@@ -8,7 +8,7 @@ class Nutshell extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <ApplicationViews />
+        <FriendWrapper />
       </React.Fragment>
     );
   }
