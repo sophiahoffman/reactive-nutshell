@@ -43,6 +43,7 @@ export default class ApplicationViews extends Component {
                   addFriend={this.props.addFriend}
                   removeFriend={this.props.removeFriend}
                   friends={this.props.friends}
+                  {...props}
                 />
               );
             } else {
