@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import MessageCard from "./MessageCard"
 import APIManager from "../../modules/APIManager"
 import MessageForm from "./MessageForm"
+import "./Message.css"
 
 class MessageList extends Component {
 
@@ -31,11 +32,13 @@ class MessageList extends Component {
     render() {
         return (
             <>
-                <div>
+                <div className="messageForm">
                     <MessageForm
                         updateMessageArray={this.updateMessageArray}
                         {...this.props}
                     />
+                </div>
+                <div className="messageList">
                     { this.state.messages.map(message =>
                         <MessageCard 
                             key={message.id}

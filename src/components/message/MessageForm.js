@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { createDateTimeToISO } from "../../modules/Utilities"
 import APIManager from "../../modules/APIManager"
+import "./Message.css"
 
 class MessageForm extends Component {
 
@@ -38,7 +39,7 @@ class MessageForm extends Component {
 
     render() {
         return (
-            <form>
+            <form id="newMessage" className="sticky">
                 <label>New Message</label>
                 <textarea className="form-control" onChange={this.handleFieldChange} required
                     id="message" value={this.state.message}></textarea>

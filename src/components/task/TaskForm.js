@@ -19,6 +19,7 @@ class TaskForm extends Component {
     /*  Local method for validation, set loadingStatus, create animal      object, invoke the AnimalManager post method, and redirect to the full animal list
     */
     constructNewTask = evt => {
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         evt.preventDefault();
         if (this.state.taskName === "" || this.state.expectedCompletionDate === "") {
             window.alert("Please fill out all fields");
@@ -29,7 +30,7 @@ class TaskForm extends Component {
             const task = {
                 name: this.state.taskName,
                 expectedCompletionDate: this.state.expectedCompletionDate,
-                userId: this.props.getUser.id,
+                userId: currentUser.id,
                 isComplete: false
             };
             // Create the animal and redirect user to animal list
