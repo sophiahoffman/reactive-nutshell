@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { createDateTimeToISO } from "../../modules/Utilities"
 import APIManager from "../../modules/APIManager"
 import "./Message.css"
+import { Form, Button } from 'react-bootstrap';
 
 class MessageForm extends Component {
 
@@ -39,12 +40,12 @@ class MessageForm extends Component {
 
     render() {
         return (
-            <form id="newMessage" className="sticky">
+            <Form id="newMessageForm" className="sticky">
                 <label>New Message</label>
                 <textarea className="form-control" onChange={this.handleFieldChange} required
                     id="message" value={this.state.message}></textarea>
-                <button onClick={this.createNewMessage}>Submit</button>
-            </form>
+                <Button className="messageFormButton" onClick={this.createNewMessage}>Submit</Button>
+            </Form>
         )}
 
 }

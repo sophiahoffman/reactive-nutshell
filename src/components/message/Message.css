@@ -27,3 +27,36 @@
 button {
     width: 80px;
 }
+.messagesCard {
+    flex-basis: 30%;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px 2px lightgray;
+}
+.messageButton {
+    margin-bottom: 10px;
+    width: 20%;
+}
+.messagesCard {
+    text-align: center;
+}
+.msgButtonContainer {
+    text-align: center;
+}
+.messageList {
+    margin-top: 17%;
+}
+#newMessageForm {
+    position: fixed;
+    top: 56px;
+    width: 100%;
+    z-index: 2;
+    border: 1px lightgrey solid;
+    background-color: white;
+    padding: 20px;
+    /* margin: 10px; */
+    box-shadow: 4px 4px 4px 4px lightgray;
+}
+.messageFormButton {
+    margin-top: 10px;
+}

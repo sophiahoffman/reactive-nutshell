@@ -1,7 +1,20 @@
 .taskList {
-    background-color: black;
+    /* background-color: black; */
 }
 .taskCard-content {
     text-align: center;
-    background-color: #ffc;
+    /* background-color: #ffc; */
+}
+.taskCard {
+    flex-basis: 80%;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px 2px lightgray;
+}
+.tasks-section-content {
+    text-align: center;
+padding: 10px;
+}
+.newTaskBtn {
+    width: 15%;
 }
