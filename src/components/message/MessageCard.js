@@ -21,7 +21,7 @@ class MessageCard extends Component {
     saveMessage = () => {
         const newMessageObj = {
             id: this.state.messageObj.id,
-            userId: this.props.getUser.id,
+            userId: localStorage.getItem("userId"),
             message: this.state.newMessage,
             timestamp: this.state.messageObj.timestamp
         }
