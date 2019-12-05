@@ -3,6 +3,7 @@ import NavBar from "./nav/NavBar";
 import FriendWrapper from "./friends/FriendWrapper";
 import "./Nutshell.css";
 import ApplicationViews from "./ApplicationViews"
+import Login from "./auth/Login"
 
 class Nutshell extends Component {
 
@@ -21,22 +22,23 @@ class Nutshell extends Component {
       "credentials",
       JSON.stringify(authObj)
     )
-    // localStorage.setItem(
-    //   "userId",
-    //   JSON.stringify(authObj.id)
-    // )
+    localStorage.setItem(
+      "userId",
+      JSON.stringify(authObj.id)
+    )
     this.setState({
       user: this.isAuthenticated(),
     });
   }
 
-  getUser = JSON.parse(localStorage.getItem("credentials"))
+  getUser = () => JSON.parse(localStorage.getItem("credentials"))
 
   clearUser = () => {
     localStorage.removeItem("credentials")
+    localStorage.removeItem("userId")
 
     this.setState({
-      user: this.isAuthenticated()
+      user: false
     });
   }
 
@@ -47,6 +49,7 @@ class Nutshell extends Component {
   }
 
   render() {
+    if (this.state.user) {
     return (
       <React.Fragment>
         <NavBar user={this.state.user}
@@ -57,7 +60,17 @@ class Nutshell extends Component {
           searchUsers={this.searchUsers}
           getUser={this.getUser} />
       </React.Fragment>
-    );
+    )
+    } else {
+      return (
+      <>
+        <NavBar user={this.state.user}
+          clearUser={this.clearUser} />
+        <Login setUser={this.setUser} searchUsers={this.searchUsers}
+             />
+      </>
+      )
+    };
   }
 }
 
