@@ -16,7 +16,7 @@ class MessageForm extends Component {
             window.alert("Please enter a message")
         } else {
             const newMessage = {
-                    "userId": this.props.getUser.id,
+                    "userId": localStorage.getItem("userId"),
                     "message": this.state.message,
                     "timestamp": createDateTimeToISO()
             }

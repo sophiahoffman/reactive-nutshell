@@ -21,7 +21,7 @@ class MessageCard extends Component {
     saveMessage = () => {
         const newMessageObj = {
             id: this.state.messageObj.id,
-            userId: this.props.getUser.id,
+            userId: localStorage.getItem("userId"),
             message: this.state.newMessage,
             timestamp: this.state.messageObj.timestamp
         }
@@ -65,7 +65,7 @@ class MessageCard extends Component {
     }
 
     render() {
-        if(this.props.message.userId === this.props.getUser.id &&
+        if(Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
             this.state.editMode === false) {
             return (
                 <Card>
@@ -75,7 +75,7 @@ class MessageCard extends Component {
                     <button onClick={this.editMessage}>Edit</button>
                 </Card>
             )
-        } else if(this.props.message.userId === this.props.getUser.id &&
+        } else if(Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
             this.state.editMode === true)  {
             return (
                 <Card>
