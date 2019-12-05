@@ -1,0 +1,25 @@
+.friends-button {
+    margin: 10px; 
+    width: 40%;
+}
+.friendsCard {
+    flex-basis: 30%;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px 2px lightgray;
+}
+.friend__name {
+    font-size: larger;
+    font-weight: bold;
+}
+.friend-search-container {
+    margin: 50px 200px 50px 200px;
+}
+.friend-search-container input {
+    margin-right: 10px;
+}
+.friends-flex {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}

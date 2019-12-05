@@ -4,6 +4,9 @@ import FriendWrapper from '../friends/FriendWrapper'
 import APIManager from "../../modules/APIManager"
 import { cloneWithoutLoc } from "@babel/types"
 import { Redirect } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap';
+import './Login.css'
+
 
 class Login extends Component {
 
@@ -22,52 +25,52 @@ class Login extends Component {
     this.setState(stateToChange)
   }
 
-    // search users for existing user
-    searchUsers = (e) => {
-        return TaskAPIManager.searchUser(this.state.fullName)
-            .then((existingUser) => {
-                if (existingUser.length > 0) {
-                    { window.alert("welcome back to Nutshell!") }
-                    { this.props.setUser(existingUser[0]) }
-                    { this.props.history.push("/tasks") }
-                } else {
-                    { window.alert("welcome to Nutshell!") }
-                    this.setState({ loadingStatus: true });
-                    const user = {
-                        fullName: this.state.fullName,
-                        email: this.state.email,
-                        password: this.state.password
-                    };
-                    TaskAPIManager.post("users", user)
-                        .then(newUser => {
-                            console.log("new user", newUser)
-                            this.props.setUser(newUser)
-                            this.props.history.push("/tasks")
-                        })
-                }
+  // search users for existing user
+  searchUsers = (e) => {
+    return TaskAPIManager.searchUser(this.state.fullName)
+      .then((existingUser) => {
+        if (existingUser.length > 0) {
+          { window.alert("welcome back to Nutshell!") }
+          { this.props.setUser(existingUser[0]) }
+          { this.props.history.push("/tasks") }
+        } else {
+          { window.alert("welcome to Nutshell!") }
+          this.setState({ loadingStatus: true });
+          const user = {
+            fullName: this.state.fullName,
+            email: this.state.email,
+            password: this.state.password
+          };
+          TaskAPIManager.post("users", user)
+            .then(newUser => {
+              console.log("new user", newUser)
+              this.props.setUser(newUser)
+              this.props.history.push("/tasks")
             })
-    }
+        }
+      })
+  }
 
-    handleLogin = (e) => {
-        e.preventDefault()
-        /*
-            For now, just store the email and password that
-            the customer enters into local storage.
-        */
-        this.searchUsers()
+  handleLogin = (e) => {
+    e.preventDefault()
+    /*
+        For now, just store the email and password that
+        the customer enters into local storage.
+    */
+    this.searchUsers()
 
 
-      }
-      // .then(alreadyUsed => {
-      //   console.log(alreadyUsed)
-      // if (alreadyUsed.length > 0) {
-      //   window.alert("You have already registered. You are logged in now.")
-      // } else {
-      //   APIManager.post("users", authObject)
+  }
+  // .then(alreadyUsed => {
+  //   console.log(alreadyUsed)
+  // if (alreadyUsed.length > 0) {
+  //   window.alert("You have already registered. You are logged in now.")
+  // } else {
+  //   APIManager.post("users", authObject)
 
-      //   window.alert("Thank you for registering on Nutshell!")
-      //   this.props.history.push("/");
-      // }})
+  //   window.alert("Thank you for registering on Nutshell!")
+  //   this.props.history.push("/");
+  // }})
 
   // }
   addOrVerifyUser = e => {
@@ -79,29 +82,29 @@ class Login extends Component {
       let userPassword = this.state.password
       let verifiedUser = []
       APIManager.get("users")
-      .then(users => {
-        verifiedUser = users.find(user => user.email === userEmail)
-        console.log(verifiedUser)
-        return verifiedUser
+        .then(users => {
+          verifiedUser = users.find(user => user.email === userEmail)
+          console.log(verifiedUser)
+          return verifiedUser
         })
-      .then(verifiedUser => {
-        let authObject = {}
-        console.log(verifiedUser)
-        if (verifiedUser && verifiedUser.password !== userPassword) {
-          window.alert("User email and password does not match current users. Please login again.")
+        .then(verifiedUser => {
+          let authObject = {}
+          console.log(verifiedUser)
+          if (verifiedUser && verifiedUser.password !== userPassword) {
+            window.alert("User email and password does not match current users. Please login again.")
 
-        } else if (verifiedUser && verifiedUser.password === userPassword){
-          this.findAndSetUser(userEmail)
-        } else {
-          authObject = {
-            fullName: this.state.name,
-            email: this.state.email,
-            password: this.state.password
-        }
-        APIManager.post("users", authObject)
-        .then(this.findAndSetUser(userEmail))
-      }
-      })
+          } else if (verifiedUser && verifiedUser.password === userPassword) {
+            this.findAndSetUser(userEmail)
+          } else {
+            authObject = {
+              fullName: this.state.name,
+              email: this.state.email,
+              password: this.state.password
+            }
+            APIManager.post("users", authObject)
+              .then(this.findAndSetUser(userEmail))
+          }
+        })
 
     }
 
@@ -111,66 +114,69 @@ class Login extends Component {
   findAndSetUser = (userEmail) => {
 
     APIManager.get("users")
-    .then(users => {
+      .then(users => {
         return users.find(user => user.email === userEmail)
-        })
-    .then(verifiedUser => {
-      let authObject = {
-        id: verifiedUser.id,
-        fullName: verifiedUser.name,
-        email: verifiedUser.email,
-        password: verifiedUser.password
-      }
-     this.props.setUser(authObject)
-    })
-      }
-    // .then(user => {
-    //   console.log(user)
-    //   localStorage.setItem("userId", user.id)
-    // }
-// )}
-        
-        // .then(result => {
-        //     if (result) {
-        //         window.alert("You are already registered."
-        //     }
-        // })
-      
+      })
+      .then(verifiedUser => {
+        let authObject = {
+          id: verifiedUser.id,
+          fullName: verifiedUser.name,
+          email: verifiedUser.email,
+          password: verifiedUser.password
+        }
+        this.props.setUser(authObject)
+      })
+  }
+  // .then(user => {
+  //   console.log(user)
+  //   localStorage.setItem("userId", user.id)
+  // }
+  // )}
 
-  
+  // .then(result => {
+  //     if (result) {
+  //         window.alert("You are already registered."
+  //     }
+  // })
+
+
+
 
   render() {
     return (
-      <form onSubmit={this.addOrVerifyUser}>
-        <fieldset>
-            <h3>Please sign in</h3>
-            <div className="formgrid">
-
-                <label htmlFor="inputName">Name</label>
-                <input onChange={this.handleFieldChange} type="text"
-                        id="name"
-                        placeholder="Enter your name"
-                        required
-                        autoFocus />
-                <label htmlFor="inputEmail">Email address</label>
-                <input onChange={this.handleFieldChange} type="email"
-                    id="email"
-                    placeholder="Enter your email address"
-                    required />
-
-                
-                <label htmlFor="inputPassword">Password</label>
-                <input onChange={this.handleFieldChange} type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    required />
-
-            </div>
-            <button type="submit">
-                Sign in
-            </button>
-        </fieldset>
-      </form>
+      <Form className="loginForm" onSubmit={this.addOrVerifyUser}>
+        <Form.Group>
+          <h3>Please Sign In</h3>
+          <hr />
+          <div className="formgrid">
+            <span>
+              <label htmlFor="inputName">Name: </label>
+              <input className="loginInput" onChange={this.handleFieldChange} type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+                autoFocus />
+            </span>
+            <span>
+              <label htmlFor="inputEmail">Email Address: </label>
+              <input className="loginInput" onChange={this.handleFieldChange} type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required />
+            </span>
+            <span>
+              <label htmlFor="inputPassword">Password </label>
+              <input className="loginInput" onChange={this.handleFieldChange} type="password"
+                id="password"
+                placeholder="Enter your password"
+                required />
+            </span>
+          </div>
+          <Button type="submit">
+            Sign in
+          </Button>
+        </Form.Group>
+      </Form>
     )
   }
 }

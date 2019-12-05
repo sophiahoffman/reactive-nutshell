@@ -5,3 +5,35 @@
     background-color: cornsilk;
     font-style: italic;
 }
+.article-section-content {
+    text-align: center;
+    padding: 10px;
+}
+#newArticleForm {
+        padding: 20px;
+        margin: 20px;
+        box-shadow: 4px 4px 4px 4px lightgray;
+}
+.articleCard {
+        flex-basis: 95%;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 2px 2px 2px 2px lightgray;
+}
+.article-container-cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+}
+.article-button {
+        margin: 10px; 
+}
+.newArticleBtn {
+    width: 15%;
+}
+.article-content {
+font-size: 20px;
+}
+.friendCardTitle {
+    font-weight: bold;
+}

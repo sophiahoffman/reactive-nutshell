@@ -1,0 +1,15 @@
+.loginForm {
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 4px 4px 4px 4px lightgray;
+}
+label {
+    font-size: larger;
+}
+label {
+    width: 100%;
+}
+.loginInput {
+    margin-bottom: 10px;
+    width: 100%;
+}

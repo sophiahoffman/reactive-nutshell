@@ -16,7 +16,7 @@ class ArticleForm extends Component {
 
     handleFieldChange = evt => {
         const stateToChange = {};
-        stateToChange[evt.target.id]=evt.target.value;
+        stateToChange[evt.target.id] = evt.target.value;
         console.log(stateToChange)
         this.setState(stateToChange)
     };
@@ -26,7 +26,7 @@ class ArticleForm extends Component {
         if (this.state.articleTitle === "" || this.state.articleURL === "" || this.state.articleSynopsis === "") {
             window.alert("Please complete all fields");
         } else {
-            this.setState({loadingStatus: true});
+            this.setState({ loadingStatus: true });
             const article = {
                 userId: Number(localStorage.getItem("userId")),
                 title: this.state.articleTitle,
@@ -35,7 +35,7 @@ class ArticleForm extends Component {
                 timestamp: new Date().toISOString()
             }
             ArticleManager.postArticle(article)
-            .then(() => this.props.history.push("/articles"));
+                .then(() => this.props.history.push("/articles"));
         }
 
 
@@ -43,27 +43,29 @@ class ArticleForm extends Component {
 
     render() {
         return (
+            <div id="newArticleForm">
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Title" id="articleTitle" onChange={this.handleFieldChange} />
 
-        <Form>
-            <Form.Group>
-                <Form.Label>Title</Form.Label>
-                <Form.Control type="text" placeholder="Enter Title" id="articleTitle" onChange={this.handleFieldChange} />
+                    </Form.Group>
 
-            </Form.Group>
-
-            <Form.Group>
-                <Form.Label>URL</Form.Label>
-                <Form.Control type="text" placeholder="Enter URL" id="articleURL" onChange={this.handleFieldChange} />
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Synopsis</Form.Label>
-                <Form.Control type="text" placeholder="Enter Synopsis" id="articleSynopsis" onChange={this.handleFieldChange} />
-            </Form.Group>
-            <Button variant="primary" type="button" disabled={this.loadingStatus} onClick={this.constructNewArticle}>
-                Submit
+                    <Form.Group>
+                        <Form.Label>URL</Form.Label>
+                        <Form.Control type="text" placeholder="Enter URL" id="articleURL" onChange={this.handleFieldChange} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Synopsis</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Synopsis" id="articleSynopsis" onChange={this.handleFieldChange} />
+                    </Form.Group>
+                    <Button variant="primary" type="button" disabled={this.loadingStatus} onClick={this.constructNewArticle}>
+                        Submit
             </Button>
-            </Form>
-        )}
+                </Form>
+            </div>
+        )
+    }
 }
 
 export default ArticleForm

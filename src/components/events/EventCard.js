@@ -17,9 +17,9 @@ export class NextEventCard extends Component {
                     <Card>
                         <div className="card-contentnext nextEvent">
                             <Card.Body>
-                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2>
+                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2><hr />
                                 <p>Date: {this.props.event.eventDate}</p>
-                                <p>Location: {this.props.event.location}</p>
+                                <p>Location: {this.props.event.location}</p><hr />
                                 <Button variant="primary" type="button" className="events-button" onClick={() => this.props.deleteEvent(this.props.event.id)}>Delete</Button>
                                 <Button variant="primary" type="button" className="events-button"
                                     onClick={() => { this.props.history.push(`/events/${this.props.event.id}/edit`) }}>Edit</Button>
@@ -34,9 +34,9 @@ export class NextEventCard extends Component {
                     <Card>
                         <div className="card-contentnext nextEvent">
                             <Card.Body>
-                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2>
+                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2><hr />
                                 <p>Date: {this.props.event.eventDate}</p>
-                                <p>Location: {this.props.event.location}</p>
+                                <p>Location: {this.props.event.location}</p><hr />
                             </Card.Body>
                         </div>
                     </Card>
@@ -56,9 +56,9 @@ export class RegularEventCard extends Component {
                     <Card>
                         <div className="card-content">
                             <Card.Body>
-                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2>
+                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2><hr />
                                 <p>Date: {this.props.event.eventDate}</p>
-                                <p>Location: {this.props.event.location}</p>
+                                <p>Location: {this.props.event.location}</p><hr />
                                 <Button variant="primary" type="button" className="events-button" onClick={() => this.props.deleteEvent(this.props.event.id)}>Delete</Button>
                                 <Button variant="primary" type="button" className="events-button"
                                     onClick={() => { this.props.history.push(`/events/${this.props.event.id}/edit`) }}>Edit</Button>
@@ -73,9 +73,9 @@ export class RegularEventCard extends Component {
                     <Card>
                         <div className="card-content">
                             <Card.Body>
-                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2>
+                                <h2><span className="card-eventname">{this.props.event.eventName}</span></h2><hr />
                                 <p>Date: {this.props.event.eventDate}</p>
-                                <p>Location: {this.props.event.location}</p>
+                                <p>Location: {this.props.event.location}</p><hr />
                             </Card.Body>
                         </div>
                     </Card>
