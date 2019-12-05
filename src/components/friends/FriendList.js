@@ -14,9 +14,13 @@ class FriendList extends Component {
   }
   render() {
     return (
-      <div className="friends">
-        <FriendSearch addFriend={this.props.addFriend} displayNewAlert={this.props.displayNewAlert} />
-        <ListGroup className="friends__list">
+      <>
+      <div className="friend-search-container">
+        <h4>Add a Friend:</h4>
+        <FriendSearch addFriend={this.props.addFriend} displayNewAlert={this.props.displayNewAlert} {...this.props} />
+        </div>
+          <div className="friends-flex">
+        <ListGroup>
           {this.props.friends.map(friend => {
             return (
               <FriendCard
@@ -28,7 +32,8 @@ class FriendList extends Component {
             );
           })}
         </ListGroup>
-      </div>
+          </div>
+      </>
     );
   }
 }

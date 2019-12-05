@@ -3,26 +3,33 @@ import { Button, Card, ListGroup } from "react-bootstrap";
 import "./Friend.css";
 
 class FriendCard extends Component {
+  state = {
+    loadingStatus: true
+  };
+  componentDidMount() {
+    this.setState({ loadingStatus: false });
+  }
   render() {
     return (
       <ListGroup.Item>
-        <Card className="friend">
-          <Card.Body className="friend__content">
-            <Card.Text className="friend__name">
-              Name: {this.props.friend.fullName}
-            </Card.Text>
-            <Card.Text className="friend__email">
-              Email: {this.props.friend.email}
-            </Card.Text>
-          </Card.Body>
-          <Button
-            type="button"
-            className="btn-primary"
-            onClick={() => this.props.deleteFriend(this.props.friend.id)}
-            style={{fontSize: ".8em"}}>
-            Remove Friend
+        <div className="friendsCard card">
+          <Card className="friend">
+            <Card.Body className="friend__content">
+              <Card.Text className="friend__name">
+               {this.props.friend.fullName}
+              </Card.Text>
+              <Card.Text className="friend__email">
+               {this.props.friend.email}
+              </Card.Text>
+            <Button
+              type="button"
+              className="btn-primary friends-button"
+              onClick={() => this.props.deleteFriend(this.props.friend.id)}>
+              Remove Friend
           </Button>
-        </Card>
+              </Card.Body>
+          </Card>
+        </div>
       </ListGroup.Item>
     );
   }

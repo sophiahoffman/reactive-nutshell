@@ -3,5 +3,13 @@
 }
 
 .taskForms {
-    background-color: blanchedalmond;
+    /* background-color: blanchedalmond; */
+}
+#newTaskForm {
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 4px 4px 4px 4px lightgray;
+}
+.saveTaskBtn {
+    margin-top: 10px;
 }

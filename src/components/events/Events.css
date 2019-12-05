@@ -11,6 +11,7 @@ padding: 10px;
     flex-basis: 80%;
     margin: 10px;
     text-align: center;
+    box-shadow: 2px 2px 2px 2px lightgray;
 }
  .nextEvent {
     flex-basis: 90%;
@@ -27,4 +28,7 @@ padding: 10px;
 }
 .events-button {
     margin: 10px; 
+}
+.newEventBtn {
+    width: 15%;
 }
