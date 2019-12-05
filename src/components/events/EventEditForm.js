@@ -25,14 +25,11 @@ class EventEditForm extends Component {
     updateExistingEvent = evt => {
         evt.preventDefault()
         this.setState({ loadingStatus: true });
-        const user = localStorage.getItem("userId")
-        const userId = parseInt(user)
-
         const editedEvent = {
             eventName: this.state.eventName,
             eventDate: this.state.eventDate,
             location: this.state.location,
-            userId: userId,
+            userId: this.state.userId,
             id: this.props.match.params.eventId
         }
 
@@ -41,6 +38,7 @@ class EventEditForm extends Component {
     }
 
     componentDidMount() {
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         APIManager.get(`events/${this.props.match.params.eventId}`)
             .then(event => {
                 if (Object.keys(event).length === 0) {
@@ -52,6 +50,7 @@ class EventEditForm extends Component {
                         eventDate: event.eventDate,
                         location: event.location,
                         loadingStatus: false,
+                        userId: currentUser.id,
                     });
                 }
             });

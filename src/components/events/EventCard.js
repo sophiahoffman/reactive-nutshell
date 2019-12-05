@@ -9,9 +9,9 @@ import { Card, Button } from 'react-bootstrap';
 export class NextEventCard extends Component {
 
     render() {
-        const userId = localStorage.getItem("userId")
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         // if the event is not the current user's, disable their ability to delete their friend's event
-        if (Number(userId) === this.props.event.userId) {
+        if (Number(currentUser.id) === this.props.event.userId) {
             return (
                 <div className="eventCard card nextEvent">
                     <Card>
@@ -48,9 +48,9 @@ export class NextEventCard extends Component {
 export class RegularEventCard extends Component {
 
     render() {
-        const userId = localStorage.getItem("userId")
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         // if the event is not the current user's, disable their ability to delete their friend's event
-        if (Number(userId) === this.props.event.userId) {
+        if (Number(currentUser.id) === this.props.event.userId) {
             return (
                 <div className="eventCard card">
                     <Card>

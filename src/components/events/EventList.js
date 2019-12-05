@@ -16,11 +16,11 @@ class EventList extends Component {
     }
 
     componentDidMount() {
-        const userId = localStorage.getItem("userId")
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         let friendsArray = []
-        let fetchCall = `events?userId=${userId}`
+        let fetchCall = `events?userId=${currentUser.id}`
         // get all friends for this user
-        APIManager.get(`friends?loggedInUser=${userId}`)
+        APIManager.get(`friends?loggedInUser=${currentUser.id}`)
             .then(friends => {
                 friends.forEach(friend => {
                     // put all of this user's friend ids into the friendsArray

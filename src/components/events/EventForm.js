@@ -27,14 +27,13 @@ class EventForm extends Component {
             window.alert("Please input an event name, date, and location")
         } else {
             this.setState({ loadingStatus: true });
-            const user = localStorage.getItem("userId")
-            const userId = parseInt(user)
+            const currentUser = JSON.parse(localStorage.getItem("credentials"))
 
             const event = {
                 eventName: this.state.eventName,
                 eventDate: this.state.eventDate,
                 location: this.state.location,
-                userId: userId
+                userId: currentUser.id
             }
             APIManager.post("events", event)
                 .then(() => this.props.history.push("/events"))
