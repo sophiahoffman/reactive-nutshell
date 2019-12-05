@@ -45,7 +45,6 @@ class FriendSearch extends Component {
     this.setState({ users: users.map(user => user.fullName) });
   }
   render() {
-    console.log(this.props);
     return (
       <InputGroup className="friend__search">
         <Typeahead
