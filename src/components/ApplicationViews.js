@@ -39,6 +39,7 @@ export default class ApplicationViews extends Component {
             if(this.props.user) {
               return (
                 <FriendList
+                  displayNewAlert={this.props.displayNewAlert}
                   getFriends={this.props.getFriends}
                   addFriend={this.props.addFriend}
                   removeFriend={this.props.removeFriend}

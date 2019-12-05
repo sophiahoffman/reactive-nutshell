@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./nav/NavBar";
-import FriendWrapper from "./friends/FriendWrapper";
 import "./Nutshell.css";
-import ApplicationViews from "./ApplicationViews"
+import NutshellAlert from "./NutshellAlert"
 
 class Nutshell extends Component {
 
@@ -59,11 +58,11 @@ class Nutshell extends Component {
       <React.Fragment>
         <NavBar user={this.state.user}
           clearUser={this.clearUser} />
-        <FriendWrapper
-        user={this.state.user}
-        setUser={this.setUser}
-        searchUsers={this.searchUsers}
-        getUser={this.getUser} />
+        <NutshellAlert 
+          user={this.state.user}
+          setUser={this.setUser}
+          searchUsers={this.searchUsers}
+          getUser={this.getUser} />
       </React.Fragment>
     );
   }

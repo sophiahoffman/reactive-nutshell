@@ -21,48 +21,37 @@ class FriendSearch extends Component {
   searchAndAddFriend = () => {
     return this.getUserId(this.state.input).then(userId => {
       if (userId) {
-        return this.props.addFriend(userId);
+        return this.props.addFriend(userId, () => {console.log("oh shit")});
       } else {
+        this.props.displayNewAlert("shit done broke", "That user does not exist", "warning")
         // window.alert(`${this.state.input} does not exist`);
-        const newAlert = { hidden: false, message: `That user does not exist` };
-        this.setState({ input: "", alert: newAlert });
+        // const newAlert = { hidden: false, message: `That user does not exist` };
+        // this.setState({ input: "", alert: newAlert });
       }
     });
   };
-  componentDidMount() {
-    APIManager.get("users").then(users =>
-      this.setState({ users: users.map(user => user.fullName) })
-    );
+  async componentDidMount() {
+    const users = await APIManager.get("users");
+    this.setState({ users: users.map(user => user.fullName) });
   }
   render() {
+    console.log(this.props);
     return (
-      <>
-        <Alert
-          dismissible
-          onClose={() =>
-            this.setState({ alert: { hidden: true, message: "" } })
-          }
-          key="friend-search-alert"
-          variant="warning"
-          hidden={this.state.alert.hidden}>
-          <Alert.Heading>{this.state.alert.message}</Alert.Heading>
-        </Alert>
-        <InputGroup className="friend__search">
-          <Typeahead
-            id="typeahead-users"
-            labelKey="name"
-            options={this.state.users}
-            onChange={input => {
-              this.setState({ input: input });
-            }}
-            placeholder="Select a person..."></Typeahead>
-          <InputGroup.Append>
-            <Button variant="success" onClick={this.searchAndAddFriend}>
-              Add
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
-      </>
+      <InputGroup className="friend__search">
+        <Typeahead
+          id="typeahead-users"
+          labelKey="name"
+          options={this.state.users}
+          onChange={input => {
+            this.setState({ input: input });
+          }}
+          placeholder="Select a person..."></Typeahead>
+        <InputGroup.Append>
+          <Button variant="success" onClick={this.searchAndAddFriend}>
+            Add
+          </Button>
+        </InputGroup.Append>
+      </InputGroup>
     );
   }
 }
