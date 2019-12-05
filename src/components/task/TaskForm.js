@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TaskAPIManager from '../../modules/TaskAPIManager';
+import { Form, FormGroup, Button } from 'react-bootstrap';
 
 
 class TaskForm extends Component {
@@ -42,8 +43,8 @@ class TaskForm extends Component {
     render() {
         return (
             <>
-                <form>
-                    <fieldset>
+                <Form>
+                    <FormGroup>
                         <div className="formgrid">
                             <input
                                 type="text"
@@ -52,24 +53,24 @@ class TaskForm extends Component {
                                 id="taskName"
                                 placeholder="task"
                             />
-                            <label htmlFor="taskName">Name</label>
+                            <Form.Label htmlFor="taskName">Name</Form.Label>
                             <input
                                 type="date"
                                 required
                                 onChange={this.handleFieldChange}
                                 id="expectedCompletionDate"
                             />
-                            <label htmlFor="expectedCompletionDate">Date to be completed</label>
+                            <Form.Label htmlFor="expectedCompletionDate">Date to be completed</Form.Label>
                         </div>
                         <div className="alignRight">
-                            <button
+                            <Button
                                 type="button"
                                 disabled={this.state.loadingStatus}
                                 onClick={this.constructNewTask}
-                            >Submit</button>
+                            >Submit</Button>
                         </div>
-                    </fieldset>
-                </form>
+                    </FormGroup>
+                </Form>
             </>
         )
     }
