@@ -17,6 +17,7 @@ class MessageList extends Component {
             this.setState({
                 messages: messageGetResults
             })
+            window.scrollTo(0, document.body.scrollHeight)
         })
     }
     
@@ -26,6 +27,7 @@ class MessageList extends Component {
             this.setState({
                 messages: messageGetResults
             })
+            window.scrollTo(0, document.body.scrollHeight)
         })
     }
 

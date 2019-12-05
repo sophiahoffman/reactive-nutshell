@@ -10,7 +10,7 @@ class MessageForm extends Component {
         message: ""
     }
 
-    createNewMessage = evt => {
+    createNewMessage = async evt => {
         evt.preventDefault()
 
         if (this.state.message === "") {
@@ -22,10 +22,8 @@ class MessageForm extends Component {
                     "timestamp": createDateTimeToISO()
             }
 
-            APIManager.post("messages", newMessage)
-            .then(messagePosted => {
-                this.props.updateMessageArray(messagePosted)
-            })
+            const messagePosted = await APIManager.post("messages", newMessage)
+            await this.props.updateMessageArray(messagePosted)
             this.setState({
                 message: ""
             })
