@@ -1,0 +1,7 @@
+Alert {
+  opacity: 1;
+}
+Alert.hidden {
+  transition-timing-function: ease-out;
+  opacity: 0;
+}

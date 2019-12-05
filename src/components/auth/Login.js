@@ -25,31 +25,33 @@ class Login extends Component {
     this.setState(stateToChange)
   }
 
-  // search users for existing user
-  searchUsers = (e) => {
-    return TaskAPIManager.searchUser(this.state.fullName)
-      .then((existingUser) => {
-        if (existingUser.length > 0) {
-          { window.alert("welcome back to Nutshell!") }
-          { this.props.setUser(existingUser[0]) }
-          { this.props.history.push("/tasks") }
-        } else {
-          { window.alert("welcome to Nutshell!") }
-          this.setState({ loadingStatus: true });
-          const user = {
-            fullName: this.state.fullName,
-            email: this.state.email,
-            password: this.state.password
-          };
-          TaskAPIManager.post("users", user)
-            .then(newUser => {
-              console.log("new user", newUser)
-              this.props.setUser(newUser)
-              this.props.history.push("/tasks")
+    // search users for existing user
+    searchUsers = (e) => {
+        return TaskAPIManager.searchUser(this.state.fullName)
+            .then((existingUser) => {
+                if (existingUser.length > 0) {
+                    { window.alert("welcome back to Nutshell!") }
+                    { this.props.setUser(existingUser[0]) }
+                    { this.props.history.push("/tasks") }
+                } else {
+                    { window.alert("welcome to Nutshell!") }
+                    this.setState({ loadingStatus: true });
+                    const user = {
+                        fullName: this.state.fullName,
+                        email: this.state.email,
+                        password: this.state.password
+                    };
+                    TaskAPIManager.post("users", user)
+                        .then(newUser => {
+                            // console.log("new user", newUser)
+                            this.props.setUser(newUser)
+                            this.props.history.push("/tasks")
+                        })
+                }
             })
         }
-      })
-  }
+  //     })
+  // }
 
   handleLogin = (e) => {
     e.preventDefault()
@@ -82,29 +84,29 @@ class Login extends Component {
       let userPassword = this.state.password
       let verifiedUser = []
       APIManager.get("users")
-        .then(users => {
-          verifiedUser = users.find(user => user.email === userEmail)
-          console.log(verifiedUser)
-          return verifiedUser
+      .then(users => {
+        verifiedUser = users.find(user => user.email === userEmail)
+        // console.log(verifiedUser)
+        return verifiedUser
         })
-        .then(verifiedUser => {
-          let authObject = {}
-          console.log(verifiedUser)
-          if (verifiedUser && verifiedUser.password !== userPassword) {
-            window.alert("User email and password does not match current users. Please login again.")
+      .then(verifiedUser => {
+        let authObject = {}
+        // console.log(verifiedUser)
+        if (verifiedUser && verifiedUser.password !== userPassword) {
+          window.alert("User email and password does not match current users. Please login again.")
 
-          } else if (verifiedUser && verifiedUser.password === userPassword) {
-            this.findAndSetUser(userEmail)
-          } else {
-            authObject = {
-              fullName: this.state.name,
-              email: this.state.email,
-              password: this.state.password
-            }
-            APIManager.post("users", authObject)
-              .then(this.findAndSetUser(userEmail))
-          }
-        })
+        } else if (verifiedUser && verifiedUser.password === userPassword){
+          this.findAndSetUser(userEmail)
+        } else {
+          authObject = {
+            fullName: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        }
+        APIManager.post("users", authObject)
+        .then(() => this.findAndSetUser(userEmail))
+      }
+      })
 
     }
 
@@ -116,31 +118,31 @@ class Login extends Component {
     APIManager.get("users")
       .then(users => {
         return users.find(user => user.email === userEmail)
-      })
-      .then(verifiedUser => {
-        let authObject = {
-          id: verifiedUser.id,
-          fullName: verifiedUser.name,
-          email: verifiedUser.email,
-          password: verifiedUser.password
-        }
-        this.props.setUser(authObject)
-      })
-  }
-  // .then(user => {
-  //   console.log(user)
-  //   localStorage.setItem("userId", user.id)
-  // }
-  // )}
+        })
+    .then(verifiedUser => {
+      let authObject = {
+        id: verifiedUser.id,
+        fullName: verifiedUser.fullName,
+        email: verifiedUser.email,
+        password: verifiedUser.password
+      }
+     this.props.setUser(authObject)
+    })
+      }
+    // .then(user => {
+    //   console.log(user)
+    //   localStorage.setItem("userId", user.id)
+    // }
+// )}
+        
+        // .then(result => {
+        //     if (result) {
+        //         window.alert("You are already registered."
+        //     }
+        // })
+      
 
-  // .then(result => {
-  //     if (result) {
-  //         window.alert("You are already registered."
-  //     }
-  // })
-
-
-
+  
 
   render() {
     return (

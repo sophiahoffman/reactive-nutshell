@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 //import the components we will need
 import TaskCard from './TaskCard'
 import TaskAPIManager from '../../modules/TaskAPIManager'
-import { Button } from 'react-bootstrap'
+import "./TaskCard.css"
+import { Button, } from 'react-bootstrap'
 
 class TaskList extends Component {
     //define what this component needs to render
@@ -17,7 +18,7 @@ class TaskList extends Component {
         const currentUser = JSON.parse(localStorage.getItem("credentials"))
         TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${currentUser.id}`)
             .then((tasks) => {
-                console.log("before set state", tasks)
+                // console.log("before set state", tasks)
                 this.setState({
                     tasks: tasks,
                     userId: currentUser.id
@@ -60,20 +61,22 @@ class TaskList extends Component {
 
         return (
             <>
-                <Button variant="primary"
-                    className="btn"
-                    onClick={() => { this.props.history.push("/tasks/new") }}
-                >New Task</Button>
-                <div className="container-cards">
-                    {this.state.tasks.map(task =>
-                        <TaskCard
-                            key={task.id}
-                            task={task}
-                            deleteTask={this.deleteTask}
-                            completeTask={this.completeTask}
-                            handleFieldChange={this.handleFieldChange}
-                            {...this.props} />
-                    )}
+                <div className="taskList">
+                    <Button variant="primary"
+                        size="lg"
+                        onClick={() => { this.props.history.push("/tasks/new") }}
+                    >New Task</Button>
+                    <div>
+                        {this.state.tasks.map(task =>
+                            <TaskCard
+                                key={task.id}
+                                task={task}
+                                deleteTask={this.deleteTask}
+                                completeTask={this.completeTask}
+                                handleFieldChange={this.handleFieldChange}
+                                {...this.props} />
+                        )}
+                    </div>
                 </div>
             </>
         )

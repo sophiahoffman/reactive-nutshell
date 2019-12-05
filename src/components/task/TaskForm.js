@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TaskAPIManager from '../../modules/TaskAPIManager';
+import { Form, FormGroup, Button } from 'react-bootstrap';
+import "./TaskForm.css"
 
 
 class TaskForm extends Component {
@@ -42,34 +44,38 @@ class TaskForm extends Component {
     render() {
         return (
             <>
-                <form>
-                    <fieldset>
-                        <div className="formgrid">
-                            <input
+                <Form className="taskForms">
+                    <FormGroup>
+                        <div>
+                            <Form.Label htmlFor="taskName">Name</Form.Label>
+                            <Form.Control
+                                size="lg"
                                 type="text"
                                 required
                                 onChange={this.handleFieldChange}
                                 id="taskName"
-                                placeholder="task"
+                                placeholder="Your next task"
                             />
-                            <label htmlFor="taskName">Name</label>
-                            <input
+                            <Form.Label htmlFor="expectedCompletionDate">Date to be completed</Form.Label>
+                            <Form.Control
+                                className="small-boxes"
+                                size="lg"
                                 type="date"
                                 required
                                 onChange={this.handleFieldChange}
                                 id="expectedCompletionDate"
                             />
-                            <label htmlFor="expectedCompletionDate">Date to be completed</label>
                         </div>
-                        <div className="alignRight">
-                            <button
-                                type="button"
+                        <div>
+                            <Button
+                                variant="outline-success"
+                                block
                                 disabled={this.state.loadingStatus}
                                 onClick={this.constructNewTask}
-                            >Submit</button>
+                            >Submit</Button>
                         </div>
-                    </fieldset>
-                </form>
+                    </FormGroup>
+                </Form>
             </>
         )
     }
