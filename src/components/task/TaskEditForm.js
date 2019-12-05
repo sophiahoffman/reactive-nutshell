@@ -16,13 +16,14 @@ class TaskEditForm extends Component {
     }
 
     updateExistingTask = evt => {
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         evt.preventDefault()
         this.setState({ loadingStatus: true });
         const editedTask = {
             id: parseInt(this.props.match.params.taskId),
             name: this.state.name,
             expectedCompletionDate: this.state.expectedCompletionDate,
-            userId: this.props.getUser.id,
+            userId: currentUser.id,
             isComplete: false
         };
         TaskAPIManager.update("tasks", editedTask)
@@ -30,12 +31,13 @@ class TaskEditForm extends Component {
     }
 
     componentDidMount() {
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         TaskAPIManager.get("tasks", this.props.match.params.taskId)
             .then(task => {
                 this.setState({
                     name: task.name,
                     expectedCompletionDate: task.expectedCompletionDate,
-                    userId: this.props.getUser.id,
+                    userId: currentUser.id,
                     isComplete: false,
                     loadingStatus: false,
                 });

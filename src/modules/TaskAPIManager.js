@@ -5,6 +5,7 @@ export default {
         return fetch(`${remoteURL}/${items}/${id}`).then(result => result.json())
     },
     getAll(items) {
+        console.log("items in fetch", items)
         return fetch(`${remoteURL}/${items}`).then(result => result.json())
     },
     delete(items, id) {
@@ -25,6 +26,15 @@ export default {
     update(items, editedItem) {
         return fetch(`${remoteURL}/${items}/${editedItem.id}`, {
             method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedItem)
+        }).then(data => data.json());
+    },
+    updateSingleSection(items, editedItem) {
+        return fetch(`${remoteURL}/${items}/${editedItem.id}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },

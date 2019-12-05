@@ -17,7 +17,6 @@ class MessageList extends Component {
                 messages: messageGetResults
             })
         })
-        
     }
     
     updateMessageArray = () => {
@@ -35,6 +34,7 @@ class MessageList extends Component {
                 <div>
                     <MessageForm
                         updateMessageArray={this.updateMessageArray}
+                        {...this.props}
                     />
                     { this.state.messages.map(message =>
                         <MessageCard 
