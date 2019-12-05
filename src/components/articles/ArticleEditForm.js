@@ -17,7 +17,7 @@ class ArticleEditForm extends Component {
     };
 
     componentDidMount () {
-        console.log("ARTICLE EDIT FORM: ComponentDid Mount");
+        // console.log("ARTICLE EDIT FORM: ComponentDid Mount");
 
         ArticleManager.getOneArticle(this.props.match.params.articleId)
         .then(article => {
@@ -36,7 +36,7 @@ class ArticleEditForm extends Component {
     handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id]=evt.target.value;
-        console.log(stateToChange)
+        // console.log(stateToChange)
         this.setState(stateToChange)
     }; 
         

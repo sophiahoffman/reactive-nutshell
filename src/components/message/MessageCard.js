@@ -41,7 +41,7 @@ class MessageCard extends Component {
     }
 
     handleFriendAdd = () => {
-        console.log("handle friend add works")
+        // console.log("handle friend add works")
         this.props.addFriend(this.props.message.userId)
         const tempFriendsIdList = this.state.friendsIdList
         tempFriendsIdList.push(this.props.message.userId)
@@ -56,7 +56,7 @@ class MessageCard extends Component {
         const tempFriendsIdList = this.props.friends.map(friend => {
             return friend.userId
         })
-        console.log("friend userId array", tempFriendsIdList)
+        // console.log("friend userId array", tempFriendsIdList)
         this.setState({
             messageObj: this.props.message,
             newMessage: this.props.message.message,

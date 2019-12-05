@@ -18,7 +18,7 @@ class TaskList extends Component {
         const currentUser = JSON.parse(localStorage.getItem("credentials"))
         TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${currentUser.id}`)
             .then((tasks) => {
-                console.log("before set state", tasks)
+                // console.log("before set state", tasks)
                 this.setState({
                     tasks: tasks,
                     userId: currentUser.id

@@ -14,7 +14,7 @@ class ArticleList extends Component {
     }
 
     componentDidMount() {
-        console.log("ARTICLE LIST: ComponentDidMount");
+        // console.log("ARTICLE LIST: ComponentDidMount");
         this.setArticleState()
     }
 
@@ -41,7 +41,7 @@ class ArticleList extends Component {
     }
 
     render() {
-        console.log("ARTICLE LIST: Render");
+        // console.log("ARTICLE LIST: Render");
 
         return (
             <React.Fragment>

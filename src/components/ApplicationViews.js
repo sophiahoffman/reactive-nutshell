@@ -23,7 +23,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/login" render={props => {
-            console.log("app view", this.props.user)
+            // console.log("app view", this.props.user)
             if (this.props.user) {
 
             return <Redirect to="/" />
@@ -145,7 +145,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
             if (this.props.user) {
-            console.log(props)
+            // console.log(props)
             return <ArticleEditForm
               {...props}
             />
