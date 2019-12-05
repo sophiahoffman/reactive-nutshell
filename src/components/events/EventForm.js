@@ -54,6 +54,7 @@ class EventForm extends Component {
                             <Form.Control type="text" placeholder="Enter Location" id="location" onChange={this.handleFieldChange} />
                         </Form.Group>
                         <Button
+                        className="newEventBtn"
                             type="button"
                             disabled={this.state.loadingStatus}
                             onClick={this.constructNewEvent}

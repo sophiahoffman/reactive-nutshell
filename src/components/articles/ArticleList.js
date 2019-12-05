@@ -45,10 +45,10 @@ class ArticleList extends Component {
 
         return (
             <React.Fragment>
-            <div className="button-new" align="center">
-                <Button variant="primary" type="button" onClick={() => this.props.history.push("articles/new")}>New Article</Button>
+            <div className="button-new article-section-content" align="center">
+                <Button variant="primary" type="button" className="newArticleBtn" onClick={() => this.props.history.push("articles/new")}>New Article</Button>
             </div>
-            <div className="container-cards" align="center">
+            <div className="article-container-cards" align="center">
                 {this.state.articles.map(article => 
                 <ArticleCards
                 key={article.id} 

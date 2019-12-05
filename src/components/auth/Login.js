@@ -4,6 +4,9 @@ import FriendWrapper from '../friends/FriendWrapper'
 import APIManager from "../../modules/APIManager"
 import { cloneWithoutLoc } from "@babel/types"
 import { Redirect } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap';
+import './Login.css'
+
 
 class Login extends Component {
 
@@ -46,28 +49,30 @@ class Login extends Component {
                         })
                 }
             })
-    }
+        }
+  //     })
+  // }
 
-    handleLogin = (e) => {
-        e.preventDefault()
-        /*
-            For now, just store the email and password that
-            the customer enters into local storage.
-        */
-        this.searchUsers()
+  handleLogin = (e) => {
+    e.preventDefault()
+    /*
+        For now, just store the email and password that
+        the customer enters into local storage.
+    */
+    this.searchUsers()
 
 
-      }
-      // .then(alreadyUsed => {
-      //   console.log(alreadyUsed)
-      // if (alreadyUsed.length > 0) {
-      //   window.alert("You have already registered. You are logged in now.")
-      // } else {
-      //   APIManager.post("users", authObject)
+  }
+  // .then(alreadyUsed => {
+  //   console.log(alreadyUsed)
+  // if (alreadyUsed.length > 0) {
+  //   window.alert("You have already registered. You are logged in now.")
+  // } else {
+  //   APIManager.post("users", authObject)
 
-      //   window.alert("Thank you for registering on Nutshell!")
-      //   this.props.history.push("/");
-      // }})
+  //   window.alert("Thank you for registering on Nutshell!")
+  //   this.props.history.push("/");
+  // }})
 
   // }
   addOrVerifyUser = e => {
@@ -111,7 +116,7 @@ class Login extends Component {
   findAndSetUser = (userEmail) => {
 
     APIManager.get("users")
-    .then(users => {
+      .then(users => {
         return users.find(user => user.email === userEmail)
         })
     .then(verifiedUser => {
@@ -141,36 +146,39 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.addOrVerifyUser}>
-        <fieldset>
-            <h3>Please sign in</h3>
-            <div className="formgrid">
-
-                <label htmlFor="inputName">Name</label>
-                <input onChange={this.handleFieldChange} type="text"
-                        id="name"
-                        placeholder="Enter your name"
-                        required
-                        autoFocus />
-                <label htmlFor="inputEmail">Email address</label>
-                <input onChange={this.handleFieldChange} type="email"
-                    id="email"
-                    placeholder="Enter your email address"
-                    required />
-
-                
-                <label htmlFor="inputPassword">Password</label>
-                <input onChange={this.handleFieldChange} type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    required />
-
-            </div>
-            <button type="submit">
-                Sign in
-            </button>
-        </fieldset>
-      </form>
+      <Form className="loginForm" onSubmit={this.addOrVerifyUser}>
+        <Form.Group>
+          <h3>Please Sign In</h3>
+          <hr />
+          <div className="formgrid">
+            <span>
+              <label htmlFor="inputName">Name: </label>
+              <input className="loginInput" onChange={this.handleFieldChange} type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+                autoFocus />
+            </span>
+            <span>
+              <label htmlFor="inputEmail">Email Address: </label>
+              <input className="loginInput" onChange={this.handleFieldChange} type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required />
+            </span>
+            <span>
+              <label htmlFor="inputPassword">Password </label>
+              <input className="loginInput" onChange={this.handleFieldChange} type="password"
+                id="password"
+                placeholder="Enter your password"
+                required />
+            </span>
+          </div>
+          <Button type="submit">
+            Sign in
+          </Button>
+        </Form.Group>
+      </Form>
     )
   }
 }

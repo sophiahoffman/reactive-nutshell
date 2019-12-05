@@ -9,7 +9,8 @@ class TaskCard extends Component {
       <Container className="taskList">
         <Row>
           <Col>
-            <Card>
+          <div className="taskCard card nextEvent">
+            <Card className="taskCard">
               <div className="taskCard-content">
                 <Card.Header as="h3">To Do: <span className="card-taskname">{this.props.task.name}</span></Card.Header>
                 <Card.Text>Will Complete by: {this.props.task.expectedCompletionDate}</Card.Text>
@@ -27,6 +28,7 @@ class TaskCard extends Component {
                 </div>
               </div>
             </Card>
+            </div>
           </Col>
         </Row>
       </Container>

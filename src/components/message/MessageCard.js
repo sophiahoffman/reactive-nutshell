@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import { formatTimestamp } from "../../modules/Utilities"
 import "./Message.css"
 import APIManager from "../../modules/APIManager"
@@ -11,7 +11,7 @@ class MessageCard extends Component {
         editMode: false,
         friendsIdList: []
     }
-    
+
     editMessage = () => {
         this.setState({
             editMode: true
@@ -27,10 +27,10 @@ class MessageCard extends Component {
         }
 
         APIManager.update("messages", newMessageObj)
-        .then(this.props.updateMessageArray)
+            .then(this.props.updateMessageArray)
 
         this.setState({
-            editMode: false 
+            editMode: false
         })
     }
 
@@ -52,7 +52,7 @@ class MessageCard extends Component {
 
     componentDidMount() {
         // console.log("this.props", this.props)
-        
+
         const tempFriendsIdList = this.props.friends.map(friend => {
             return friend.userId
         })
@@ -65,43 +65,59 @@ class MessageCard extends Component {
     }
 
     render() {
-        if(Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
+        if (Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
             this.state.editMode === false) {
             return (
-                <Card>
-                    <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
-                    <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
-                        {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
-                    <button onClick={this.editMessage}>Edit</button>
-                </Card>
+                <div className="messagesCard card">
+                    <Card>
+                        <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
+                        <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
+                            {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
+                        <div className="msgButtonContainer">
+
+                            <Button className="messageButton" onClick={this.editMessage}>Edit</Button>
+                        </div>
+                    </Card>
+                </div>
             )
-        } else if(Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
-            this.state.editMode === true)  {
+        } else if (Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
+            this.state.editMode === true) {
             return (
-                <Card>
-                    <span>{this.props.message.user.fullName} - </span>
-                    <textarea id="newMessage" onChange={this.handleFieldChange}
-                        defaultValue={this.props.message.message}></textarea>
-                    <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
-                        {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
-                    <button onClick={this.saveMessage}>Save</button>
-                </Card>
+                <div className="messagesCard card">
+
+                    <Card className="friendsCard-center">
+                        <span>{this.props.message.user.fullName} - </span>
+                        <textarea id="newMessage" onChange={this.handleFieldChange}
+                            defaultValue={this.props.message.message}></textarea>
+                        <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
+                            {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
+                        <div className="msgButtonContainer">
+                            <Button className="messageButton" onClick={this.saveMessage}>Save</Button>
+                        </div>
+                    </Card>
+                </div>
             )
-        } else if(!this.state.friendsIdList.includes(this.props.message.userId)) {
+        } else if (!this.state.friendsIdList.includes(this.props.message.userId)) {
             return (
-                <Card>
-                    <span><span className="userName" onClick={this.handleFriendAdd}>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
-                    <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
-                        {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
-                </Card>
+                <div className="messagesCard card">
+
+                    <Card>
+                        <span><span className="userName" onClick={this.handleFriendAdd}>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
+                        <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
+                            {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
+                    </Card>
+                </div>
             )
         } else {
             return (
-                <Card>
-                    <span><span>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
-                    <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
-                        {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
-                </Card>
+                <div className="messagesCard card">
+
+                    <Card>
+                        <span><span>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
+                        <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
+                            {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
+                    </Card>
+                </div>
             )
         }
     }

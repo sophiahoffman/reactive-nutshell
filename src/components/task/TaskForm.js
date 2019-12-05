@@ -44,38 +44,41 @@ class TaskForm extends Component {
     render() {
         return (
             <>
-                <Form className="taskForms">
-                    <FormGroup>
-                        <div>
-                            <Form.Label htmlFor="taskName">Name</Form.Label>
-                            <Form.Control
-                                size="lg"
-                                type="text"
-                                required
-                                onChange={this.handleFieldChange}
-                                id="taskName"
-                                placeholder="Your next task"
-                            />
-                            <Form.Label htmlFor="expectedCompletionDate">Date to be completed</Form.Label>
-                            <Form.Control
-                                className="small-boxes"
-                                size="lg"
-                                type="date"
-                                required
-                                onChange={this.handleFieldChange}
-                                id="expectedCompletionDate"
-                            />
-                        </div>
-                        <div>
-                            <Button
-                                variant="outline-success"
-                                block
-                                disabled={this.state.loadingStatus}
-                                onClick={this.constructNewTask}
-                            >Submit</Button>
-                        </div>
-                    </FormGroup>
-                </Form>
+                <div id="newTaskForm">
+
+                    <Form className="taskForms">
+                        <FormGroup>
+                            <div>
+                                <Form.Label htmlFor="taskName">Name</Form.Label>
+                                <Form.Control
+                                    size="lg"
+                                    type="text"
+                                    required
+                                    onChange={this.handleFieldChange}
+                                    id="taskName"
+                                    placeholder="Your next task"
+                                />
+                                <Form.Label htmlFor="expectedCompletionDate">Date to be completed</Form.Label>
+                                <Form.Control
+                                    className="small-boxes"
+                                    size="lg"
+                                    type="date"
+                                    required
+                                    onChange={this.handleFieldChange}
+                                    id="expectedCompletionDate"
+                                />
+                            </div>
+                            <div className="saveTaskBtn">
+                                <Button
+                                    variant="outline-success"
+                                    block
+                                    disabled={this.state.loadingStatus}
+                                    onClick={this.constructNewTask}
+                                >Submit</Button>
+                            </div>
+                        </FormGroup>
+                    </Form>
+                </div>
             </>
         )
     }
