@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Login from './auth/Login'
 import TaskList from "./task/TaskList";
 import TaskForm from "./task/TaskForm"
+import TaskEditForm from "./task/TaskEditForm"
 import MessageList from "./message/MessageList"
 import ArticleList from "./articles/ArticleList";
 import ArticleForm from "./articles/ArticleForm";
@@ -57,8 +58,8 @@ export default class ApplicationViews extends Component {
         <Route
           exact path="/tasks" render={props => {
             if (this.props.user) {
-            return <TaskList {...props} {...this.props} />
-            }  else {
+              return <TaskList {...props} {...this.props} />
+            } else {
               return <Redirect to="/login" />
             }
           }} 
@@ -72,6 +73,12 @@ export default class ApplicationViews extends Component {
               return <Redirect to="/login" />
             }
         }} />
+
+        <Route
+          path="/tasks/:taskId(\d+)/edit" render={props => {
+            return <TaskEditForm {...props} {...this.props} />
+          }}
+        />
 
 
         {/* Author of Events Routes: Lauren Riddle */}
@@ -115,7 +122,7 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-{/* path to create new article is a form */}
+        {/* path to create new article is a form */}
         <Route
           path="/articles/new" render={props => {
             if (this.props.user) {
@@ -128,7 +135,7 @@ export default class ApplicationViews extends Component {
           }}
         />
 
-{/* path to update article is a form         */}
+        {/* path to update article is a form         */}
         <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
             if (this.props.user) {
