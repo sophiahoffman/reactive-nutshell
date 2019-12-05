@@ -12,7 +12,7 @@ class NavBar extends Component {
     if (this.props.user) {
         return (
             <NavBarBS sticky="top" className="navbar bg-dark text-white flex-md-nowrap p-0 shadow">
-                <ul className="nav nav-pills nav-fill">
+                <span><ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link className="nav-link" to="/articles">Articles</Link>
                     </li>
@@ -28,7 +28,7 @@ class NavBar extends Component {
                     <li className="nav-item">
                         <Link className="nav-link" to="/events">Events</Link>
                     </li>
-                </ul>
+                </ul></span>
                 <span className="navbar-text">
                     <ul className="nav nav-pills nav-fill">
                         <li className="nav-item">
