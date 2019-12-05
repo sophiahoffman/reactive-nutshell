@@ -23,7 +23,6 @@ class TaskForm extends Component {
         if (this.state.taskName === "" || this.state.expectedCompletionDate === "") {
             window.alert("Please fill out all fields");
         } else {
-            console.log("this.props in task form", this.props.getUser.id)
             this.setState({ loadingStatus: true });
             // const userVal = this.props.getUser("credentials")
             // console.log("userVal", userVal)
