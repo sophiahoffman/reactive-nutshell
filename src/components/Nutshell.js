@@ -8,7 +8,7 @@ class Nutshell extends Component {
 
   state = {
     user: false,
-    userId: JSON.parse(localStorage.getItem("credentials")).id
+    userId: JSON.parse(localStorage.getItem("credentials"))
   }
 
   // Check if credentials are in local storage
