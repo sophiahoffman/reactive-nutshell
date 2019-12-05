@@ -5,7 +5,6 @@ import APIManager from "../../modules/APIManager"
 class MessageForm extends Component {
 
     state = {
-        loggedInUserId: 1,
         message: ""
     }
 
@@ -16,7 +15,7 @@ class MessageForm extends Component {
             window.alert("Please enter a message")
         } else {
             const newMessage = {
-                    "userId": this.state.loggedInUserId,
+                    "userId": this.props.getUser.id,
                     "message": this.state.message,
                     "timestamp": createDateTimeToISO()
             }
