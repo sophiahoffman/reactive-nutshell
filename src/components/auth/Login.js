@@ -117,7 +117,7 @@ class Login extends Component {
     .then(verifiedUser => {
       let authObject = {
         id: verifiedUser.id,
-        fullName: verifiedUser.name,
+        fullName: verifiedUser.fullName,
         email: verifiedUser.email,
         password: verifiedUser.password
       }
