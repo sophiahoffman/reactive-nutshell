@@ -27,7 +27,7 @@ class NutshellAlert extends Component {
     if (type === "success") {
       setTimeout(() => {
         this.setState({ hidden: true });
-      }, 60000);
+      }, 3000);
     }
   };
   executeClick = () => {
