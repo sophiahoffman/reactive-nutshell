@@ -15,7 +15,7 @@ class FriendList extends Component {
   render() {
     return (
       <>
-        <FriendSearch addFriend={this.props.addFriend} />
+        {/* <FriendSearch addFriend={this.props.addFriend} /> */}
         <ListGroup>
           {this.props.friends.map(friend => {
             return (

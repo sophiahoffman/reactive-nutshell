@@ -86,7 +86,15 @@ class Login extends Component {
     .then(users => {
         return users.find(user => user.email === userEmail)
         })
-    .then(verifiedUser => this.props.setUser(verifiedUser))
+    .then(verifiedUser => {
+      let authObject = {
+        id: verifiedUser.id,
+        name: verifiedUser.name,
+        email: verifiedUser.email,
+        password: verifiedUser.password
+      }
+     this.props.setUser(authObject)
+    })
       }
     // .then(user => {
     //   console.log(user)
@@ -105,7 +113,7 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.addUser}>
+      <form onSubmit={this.addOrVerifyUser}>
         <fieldset>
             <h3>Please sign in</h3>
             <div className="formgrid">
