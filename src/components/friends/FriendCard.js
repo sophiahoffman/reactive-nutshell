@@ -18,7 +18,8 @@ class FriendCard extends Component {
           <Button
             type="button"
             className="btn-primary"
-            onClick={() => this.props.deleteFriend(this.props.friend.id)}>
+            onClick={() => this.props.deleteFriend(this.props.friend.id)}
+            style={{fontSize: ".8em"}}>
             Remove Friend
           </Button>
         </Card>

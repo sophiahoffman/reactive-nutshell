@@ -2,24 +2,25 @@ import React, { Component } from "react";
 import FriendCard from "./FriendCard";
 import { ListGroup } from "react-bootstrap";
 import FriendSearch from "./FriendSearch";
+import "./Friend.css";
 
 class FriendList extends Component {
   state = {
     loadingStatus: true
   };
-  addFriend = id => {};
   componentDidMount() {
     this.props.getFriends();
     this.setState({ loadingStatus: false });
   }
   render() {
     return (
-      <>
-        <FriendSearch addFriend={this.props.addFriend} />
-        <ListGroup>
+      <div className="friends">
+        <FriendSearch addFriend={this.props.addFriend} displayNewAlert={this.props.displayNewAlert} />
+        <ListGroup className="friends__list">
           {this.props.friends.map(friend => {
             return (
               <FriendCard
+                className="friends__card"
                 key={friend.id}
                 friend={friend.user}
                 deleteFriend={this.props.removeFriend}
@@ -27,7 +28,7 @@ class FriendList extends Component {
             );
           })}
         </ListGroup>
-      </>
+      </div>
     );
   }
 }

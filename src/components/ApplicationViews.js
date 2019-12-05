@@ -23,7 +23,7 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/login" render={props => {
-            console.log("app view", this.props.user)
+            // console.log("app view", this.props.user)
             if (this.props.user) {
 
             return <Redirect to="/" />
@@ -35,15 +35,20 @@ export default class ApplicationViews extends Component {
 
         <Route
           path="/friends" render={props => {
-            if (this.props.user) {
-            return <FriendList
-                getFriends={this.props.getFriends}
-                addFriend={this.props.addFriend}
-                removeFriend={this.props.removeFriend}
-                friends={this.props.friends} />
-              } else {
-                return <Redirect to="/login" />
-            }}}
+            if(this.props.user) {
+              return (
+                <FriendList
+                  displayNewAlert={this.props.displayNewAlert}
+                  getFriends={this.props.getFriends}
+                  addFriend={this.props.addFriend}
+                  removeFriend={this.props.removeFriend}
+                  friends={this.props.friends}
+                />
+              );
+            } else {
+              return <Redirect to="/login" />
+            }
+          }}
         />
 
         <Route
@@ -140,7 +145,7 @@ export default class ApplicationViews extends Component {
         <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
             if (this.props.user) {
-            console.log(props)
+            // console.log(props)
             return <ArticleEditForm
               {...props}
             />

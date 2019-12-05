@@ -7,36 +7,48 @@ import "react-bootstrap-typeahead/css/Typeahead.css";
 class FriendSearch extends Component {
   state = {
     users: [],
-    input: ""
+    input: "",
+    alert: {
+      hidden: true,
+      message: ""
+    }
   };
-  handleInputChange = evt => {
-    this.setState({ input: evt.target.value });
+  getUserId = async name => {
+    const user = await APIManager.get(`users?fullName=${name}`);
+    return user[0] ? user[0].id : null;
   };
-  getUserId = name => {
-    return APIManager.get(`users?fullName=${name}`).then(user =>
-      user[0] ? user[0].id : null
-    );
+  searchAndAddFriend = async () => {
+    const userId = await this.getUserId(this.state.input);
+    if (userId) {
+      this.props.displayNewAlert(
+        "Want to add this person as a friend?",
+        "",
+        "info",
+        () => {
+          this.props.addFriend(userId);
+        }
+      );
+      // return this.props.addFriend(userId);
+    } else {
+      this.props.displayNewAlert(
+        "shit done broke",
+        "That user does not exist",
+        "warning"
+      );
+      // window.alert(`${this.state.input} does not exist`);
+      // const newAlert = { hidden: false, message: `That user does not exist` };
+      // this.setState({ input: "", alert: newAlert });
+    }
   };
-  searchAndAddFriend = () => {
-    return this.getUserId(this.state.input).then(userId => {
-      if (userId) {
-        return this.props.addFriend(userId);
-      } else {
-        window.alert(`${this.state.input} does not exist`);
-        this.setState({ input: "" });
-      }
-    });
-  };
-  componentDidMount() {
-    APIManager.get("users").then(users =>
-      this.setState({ users: users.map(user => user.fullName) })
-    );
+  async componentDidMount() {
+    const users = await APIManager.get("users");
+    this.setState({ users: users.map(user => user.fullName) });
   }
   render() {
     return (
       <InputGroup className="friend__search">
         <Typeahead
-        id="typeahead-users"
+          id="typeahead-users"
           labelKey="name"
           options={this.state.users}
           onChange={input => {

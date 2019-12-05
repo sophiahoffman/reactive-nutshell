@@ -40,7 +40,7 @@ class Login extends Component {
                     };
                     TaskAPIManager.post("users", user)
                         .then(newUser => {
-                            console.log("new user", newUser)
+                            // console.log("new user", newUser)
                             this.props.setUser(newUser)
                             this.props.history.push("/tasks")
                         })
@@ -81,12 +81,12 @@ class Login extends Component {
       APIManager.get("users")
       .then(users => {
         verifiedUser = users.find(user => user.email === userEmail)
-        console.log(verifiedUser)
+        // console.log(verifiedUser)
         return verifiedUser
         })
       .then(verifiedUser => {
         let authObject = {}
-        console.log(verifiedUser)
+        // console.log(verifiedUser)
         if (verifiedUser && verifiedUser.password !== userPassword) {
           window.alert("User email and password does not match current users. Please login again.")
 

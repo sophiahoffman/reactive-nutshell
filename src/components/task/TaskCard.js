@@ -4,7 +4,7 @@ import "./TaskCard.css"
 
 class TaskCard extends Component {
   render() {
-    console.log("field change", this.props)
+    // console.log("field change", this.props)
     return (
       <Container className="taskList">
         <Row>

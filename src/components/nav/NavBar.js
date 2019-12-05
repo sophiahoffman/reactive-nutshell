@@ -8,7 +8,7 @@ class NavBar extends Component {
 
     render() {
 
-    console.log(this.props.user)
+    // console.log(this.props.user)
     if (this.props.user) {
         return (
             <NavBarBS sticky="top" className="navbar bg-dark text-white flex-md-nowrap p-0 shadow">
