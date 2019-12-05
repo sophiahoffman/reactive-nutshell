@@ -26,18 +26,13 @@ class TaskList extends Component {
     }
 
     componentDidMount() {
-       this.getAllTasks() 
+        this.getAllTasks()
     }
 
     deleteTask = (id) => {
         TaskAPIManager.delete("tasks", id)
             .then(() => {
-                TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${this.props.getUser.id}`)
-                    .then((newTasks) => {
-                        this.setState({
-                            tasks: newTasks
-                        })
-                    })
+                this.getAllTasks()
             })
     }
 
