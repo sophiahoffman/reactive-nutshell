@@ -94,7 +94,7 @@ class Login extends Component {
           this.findAndSetUser(userEmail)
         } else {
           authObject = {
-            name: this.state.name,
+            fullName: this.state.name,
             email: this.state.email,
             password: this.state.password
         }
@@ -117,7 +117,7 @@ class Login extends Component {
     .then(verifiedUser => {
       let authObject = {
         id: verifiedUser.id,
-        name: verifiedUser.name,
+        fullName: verifiedUser.name,
         email: verifiedUser.email,
         password: verifiedUser.password
       }
