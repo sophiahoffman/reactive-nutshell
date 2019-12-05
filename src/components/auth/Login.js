@@ -99,7 +99,7 @@ class Login extends Component {
             password: this.state.password
         }
         APIManager.post("users", authObject)
-        .then(this.findAndSetUser(userEmail))
+        .then(() => this.findAndSetUser(userEmail))
       }
       })
 
