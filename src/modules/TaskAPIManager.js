@@ -5,6 +5,7 @@ export default {
         return fetch(`${remoteURL}/${items}/${id}`).then(result => result.json())
     },
     getAll(items) {
+        console.log("items in fetch", items)
         return fetch(`${remoteURL}/${items}`).then(result => result.json())
     },
     delete(items, id) {

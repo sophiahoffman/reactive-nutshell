@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class TaskCard extends Component {
   render() {
-    console.log("task card", this.props)
+    console.log("field change", this.props)
     return (
       <div className="card">
         <div className="card-content">
@@ -10,8 +10,8 @@ class TaskCard extends Component {
           <p>{this.props.task.expectedCompletionDate}</p>
           <label>Completed</label>
           <input type="checkbox"
-          onChange={() => this.props.completeTask(this.props.task.id)}
-          onClick={() => { this.props.history.push("/tasks")}}
+          onChange={() => this.props.handleFieldChange}
+          onClick={() => this.props.completeTask(this.props.task.id)}
           />
           <button type="button"
             onClick={() => { this.props.history.push(`/tasks/${this.props.task.id}/edit`) }}>Edit</button>

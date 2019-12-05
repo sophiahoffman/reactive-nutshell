@@ -8,8 +8,7 @@ class Nutshell extends Component {
 
   state = {
     user: false,
-    userId: ""
-
+    userId: JSON.parse(localStorage.getItem("credentials")).id
   }
 
   // Check if credentials are in local storage
@@ -17,14 +16,7 @@ class Nutshell extends Component {
   isAuthenticated = () => localStorage.getItem("credentials") !== null
 
   setUser = authObj => {
-    /*
-      For now, just store the email and password that
-      the customer enters into local storage.
-    */
-    // localStorage.setItem(
-    //   "credentials",
-    //   JSON.stringify(authObj)
-    // )
+
     localStorage.setItem(
       "credentials",
       JSON.stringify(authObj)

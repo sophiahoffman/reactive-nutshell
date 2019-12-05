@@ -8,20 +8,25 @@ class TaskList extends Component {
     //define what this component needs to render
     state = {
         tasks: [],
-        userId: ""
+        userId: "",
+        loadingStatus: false
 
 
     }
-
-    componentDidMount() {
+    getAllTasks = () => {
         const currentUser = JSON.parse(localStorage.getItem("credentials"))
         TaskAPIManager.getAll(`tasks?isComplete=false&_sort=expectedCompletionDate&_order=asc&userId=${currentUser.id}`)
             .then((tasks) => {
+                console.log("before set state", tasks)
                 this.setState({
                     tasks: tasks,
                     userId: currentUser.id
                 })
             })
+    }
+
+    componentDidMount() {
+       this.getAllTasks() 
     }
 
     deleteTask = (id) => {
@@ -43,15 +48,17 @@ class TaskList extends Component {
         this.setState(stateToChange)
     }
 
-    completeTask= (id)  => {
-        console.log("trying to find id", id)
+    completeTask = (id) => {
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
         this.setState({ loadingStatus: true });
         const completedTask = {
             isComplete: true,
             id: id
         };
         TaskAPIManager.updateSingleSection("tasks", completedTask)
-            .then(() => this.props.history.push("/tasks"))
+            .then(() => {
+                this.getAllTasks()
+            })
     }
 
     render() {
@@ -69,6 +76,7 @@ class TaskList extends Component {
                             task={task}
                             deleteTask={this.deleteTask}
                             completeTask={this.completeTask}
+                            handleFieldChange={this.handleFieldChange}
                             {...this.props} />
                     )}
                 </div>
