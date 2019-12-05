@@ -4,3 +4,26 @@
     font-size: 10px;
     color: grey;
 }
+
+.messageForm {
+    position: fixed;
+    top: 56px;
+    width: 100%;
+    z-index: 2;
+    border: 1px lightgrey solid;
+    background-color: white;
+}
+
+.messageList {
+    margin-top: 124px;
+    width: 100%;
+    z-index: 1;
+}
+
+.userName:hover {
+    color: blue;
+}
+
+button {
+    width: 80px;
+}
