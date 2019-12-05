@@ -99,7 +99,7 @@ class Login extends Component {
             password: this.state.password
         }
         APIManager.post("users", authObject)
-        .then(this.findAndSetUser(userEmail))
+        .then(() => this.findAndSetUser(userEmail))
       }
       })
 
@@ -117,7 +117,7 @@ class Login extends Component {
     .then(verifiedUser => {
       let authObject = {
         id: verifiedUser.id,
-        fullName: verifiedUser.name,
+        fullName: verifiedUser.fullName,
         email: verifiedUser.email,
         password: verifiedUser.password
       }
