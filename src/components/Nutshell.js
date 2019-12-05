@@ -38,7 +38,7 @@ class Nutshell extends Component {
     });
   }
 
-  getUser = JSON.parse(localStorage.getItem("credentials"))
+  getUser = () => JSON.parse(localStorage.getItem("credentials"))
 
   clearUser = () => {
     localStorage.removeItem("credentials")
