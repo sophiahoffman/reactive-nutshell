@@ -32,8 +32,8 @@ class NutshellAlert extends Component {
   };
   executeClick = () => {
     if (this.state.execClick !== null) {
-      console.log(this.state.execClick)
-      // return this.state.execClick();
+      // console.log(this.state.execClick)
+      return this.state.execClick();
     }
   };
   render() {
@@ -56,8 +56,9 @@ class NutshellAlert extends Component {
           <p className="alert-message">{this.state.message}</p>
           <Button
             onClick={this.executeClick}
-            hidden={this.state.execClick === null}>
-            Submit
+            hidden={this.state.execClick === null}
+            className="alignRight">
+            Accept
           </Button>
         </Alert>
         <FriendWrapper displayNewAlert={this.displayNewAlert} {...this.props} />
