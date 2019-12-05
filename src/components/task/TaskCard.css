@@ -1,3 +1,7 @@
+.taskList {
+    background-color: black;
+}
 .taskCard-content {
     text-align: center;
+    background-color: #ffc;
 }

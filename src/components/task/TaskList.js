@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 //import the components we will need
 import TaskCard from './TaskCard'
 import TaskAPIManager from '../../modules/TaskAPIManager'
+import "./TaskCard.css"
 import { Button, } from 'react-bootstrap'
 
 class TaskList extends Component {
@@ -60,20 +61,22 @@ class TaskList extends Component {
 
         return (
             <>
-                <Button variant="primary"
-                    size="lg"
-                    onClick={() => { this.props.history.push("/tasks/new") }}
-                >New Task</Button>
-                <div>
-                    {this.state.tasks.map(task =>
-                        <TaskCard
-                            key={task.id}
-                            task={task}
-                            deleteTask={this.deleteTask}
-                            completeTask={this.completeTask}
-                            handleFieldChange={this.handleFieldChange}
-                            {...this.props} />
-                    )}
+                <div className="taskList">
+                    <Button variant="primary"
+                        size="lg"
+                        onClick={() => { this.props.history.push("/tasks/new") }}
+                    >New Task</Button>
+                    <div>
+                        {this.state.tasks.map(task =>
+                            <TaskCard
+                                key={task.id}
+                                task={task}
+                                deleteTask={this.deleteTask}
+                                completeTask={this.completeTask}
+                                handleFieldChange={this.handleFieldChange}
+                                {...this.props} />
+                        )}
+                    </div>
                 </div>
             </>
         )
