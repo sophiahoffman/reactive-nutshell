@@ -1,83 +1,85 @@
 import React, { Component } from "react"
-import AnimalManager from "../../modules/AnimalManager"
+import TaskAPIManager from "../../modules/TaskAPIManager"
 
-
-class AnimalEditForm extends Component {
+class TaskEditForm extends Component {
     //set the initial state
     state = {
-      animalName: "",
-      breed: "",
-      loadingStatus: true,
+        name: "",
+        expectedCompletionDate: "",
+        loadingStatus: true,
     };
 
     handleFieldChange = evt => {
-      const stateToChange = {}
-      stateToChange[evt.target.id] = evt.target.value
-      this.setState(stateToChange)
+        const stateToChange = {}
+        stateToChange[evt.target.id] = evt.target.value
+        this.setState(stateToChange)
     }
 
-    updateExistingAnimal = evt => {
-      evt.preventDefault()
-      this.setState({ loadingStatus: true });
-      const editedAnimal = {
-        id: this.props.match.params.animalId,
-        name: this.state.animalName,
-        breed: this.state.breed
-      };
-
-      AnimalManager.update(editedAnimal)
-      .then(() => this.props.history.push("/animals"))
+    updateExistingTask = evt => {
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
+        evt.preventDefault()
+        this.setState({ loadingStatus: true });
+        const editedTask = {
+            id: parseInt(this.props.match.params.taskId),
+            name: this.state.name,
+            expectedCompletionDate: this.state.expectedCompletionDate,
+            userId: currentUser.id,
+            isComplete: false
+        };
+        TaskAPIManager.update("tasks", editedTask)
+            .then(() => this.props.history.push("/tasks"))
     }
 
     componentDidMount() {
-      AnimalManager.get(this.props.match.params.animalId)
-      .then(animal => {
-          this.setState({
-            animalName: animal.name,
-            breed: animal.breed,
-            loadingStatus: false,
-          });
-      });
+        const currentUser = JSON.parse(localStorage.getItem("credentials"))
+        TaskAPIManager.get("tasks", this.props.match.params.taskId)
+            .then(task => {
+                this.setState({
+                    name: task.name,
+                    expectedCompletionDate: task.expectedCompletionDate,
+                    userId: currentUser.id,
+                    isComplete: false,
+                    loadingStatus: false,
+                });
+            });
     }
 
     render() {
-      return (
-        <>
-        <form>
-          <fieldset>
-            <div className="formgrid">
-              <input
-                type="text"
-                required
-                className="form-control"
-                onChange={this.handleFieldChange}
-                id="animalName"
-                value={this.state.animalName}
-              />
-              <label htmlFor="animalName">Animal name</label>
-
-              <input
-                type="text"
-                required
-                className="form-control"
-                onChange={this.handleFieldChange}
-                id="breed"
-                value={this.state.breed}
-              />
-              <label htmlFor="breed">Breed</label>
-            </div>
-            <div className="alignRight">
-              <button
-                type="button" disabled={this.state.loadingStatus}
-                onClick={this.updateExistingAnimal}
-                className="btn btn-primary"
-              >Submit</button>
-            </div>
-          </fieldset>
-        </form>
-        </>
-      );
+        return (
+            <>
+                <form>
+                    <fieldset>
+                        <div className="formgrid">
+                            <input
+                                type="text"
+                                value={this.state.name}
+                                required
+                                onChange={this.handleFieldChange}
+                                id="name"
+                                placeholder="task"
+                            />
+                            <label htmlFor="taskName">Name</label>
+                            <input
+                                type="date"
+                                value={this.state.expectedCompletionDate}
+                                required
+                                onChange={this.handleFieldChange}
+                                id="expectedCompletionDate"
+                            />
+                            <label htmlFor="expectedCompletionDate">Date to be completed</label>
+                        </div>
+                        <div className="alignRight">
+                            <button
+                                type="button"
+                                disabled={this.state.loadingStatus}
+                                onClick={this.updateExistingTask}
+                            >Submit</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </>
+        );
     }
 }
 
-export default AnimalEditForm
+export default TaskEditForm
