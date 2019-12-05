@@ -3,6 +3,12 @@ import { Button, Card, ListGroup } from "react-bootstrap";
 import "./Friend.css";
 
 class FriendCard extends Component {
+  state = {
+    loadingStatus: true
+  };
+  componentDidMount() {
+    this.setState({ loadingStatus: false });
+  }
   render() {
     return (
       <ListGroup.Item>
@@ -16,10 +22,11 @@ class FriendCard extends Component {
             </Card.Text>
           </Card.Body>
           <Button
+            disabled={this.state.loadingStatus}
             type="button"
             className="btn-primary"
             onClick={() => this.props.deleteFriend(this.props.friend.id)}
-            style={{fontSize: ".8em"}}>
+            style={{ fontSize: ".8em" }}>
             Remove Friend
           </Button>
         </Card>
