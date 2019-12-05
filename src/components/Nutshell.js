@@ -14,7 +14,7 @@ class Nutshell extends Component {
 
   // Check if credentials are in local storage
   //returns true/false
-  isAuthenticated = () => localStorage.getItem("credentials") !== null
+  isAuthenticated = () => localStorage.getItem("userId") !== null
 
   setUser = authObj => {
     /*
@@ -25,10 +25,10 @@ class Nutshell extends Component {
     //   "credentials",
     //   JSON.stringify(authObj)
     // )
-    localStorage.setItem(
-      "credentials",
-      JSON.stringify(authObj)
-    )
+    // localStorage.setItem(
+    //   "credentials",
+    //   JSON.stringify(authObj)
+    // )
     localStorage.setItem(
       "userId",
       JSON.stringify(authObj.id)

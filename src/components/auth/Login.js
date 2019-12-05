@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import TaskAPIManager from '../../modules/TaskAPIManager'
 import FriendWrapper from '../friends/FriendWrapper'
 import APIManager from "../../modules/APIManager"
+import { cloneWithoutLoc } from "@babel/types"
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
 
@@ -22,40 +24,75 @@ class Login extends Component {
 
   handleRegistration = (e) => {
     e.preventDefault()
+    console.log("running handle registration")
+    this.findUser()
+    .then(r => console.log(r))
 
-    let alreadyUsed = this.findUser
-    console.log(alreadyUsed)
 
-    if (alreadyUsed.length > 0) {
-        window.alert("You have already registered. Please go to login.")
+      }
+      // .then(alreadyUsed => {
+      //   console.log(alreadyUsed)
+      // if (alreadyUsed.length > 0) {
+      //   window.alert("You have already registered. You are logged in now.")
+      // } else {
+      //   APIManager.post("users", authObject)
+
+      //   window.alert("Thank you for registering on Nutshell!")
+      //   this.props.history.push("/");
+      // }})
+
+  // }
+  addOrVerifyUser = e => {
+    e.preventDefault()
+    if (this.state.name === "" || this.state.email === "" || this.state.password === "") {
+      window.alert("Please complete all fields!")
     } else {
-        let authObject = {
+      let userEmail = this.state.email
+      let userPassword = this.state.password
+      let verifiedUser = []
+      APIManager.get("users")
+      .then(users => {
+        verifiedUser = users.find(user => user.email === userEmail)
+        console.log(verifiedUser)
+        return verifiedUser
+        })
+      .then(verifiedUser => {
+        let authObject = {}
+        console.log(verifiedUser)
+        if (verifiedUser && verifiedUser.password !== userPassword) {
+          window.alert("User email and password does not match current users. Please login again.")
+
+        } else if (verifiedUser && verifiedUser.password === userPassword){
+          this.findAndSetUser(userEmail)
+        } else {
+          authObject = {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password
-    }
-    
+        }
         APIManager.post("users", authObject)
-        this.props.setUser(authObject);
+        .then(this.findAndSetUser(userEmail))
+      }
+      })
 
-        window.alert("Thank you for registering on Nutshell!")
-        this.props.history.push("/");
     }
-
-
 
   }
 
-  findUser = () => {
-    //   if (localStorage.getItem("credentials")){
-    //       let credentials = JSON.parse(localStorage.getItem("credentials"))
-        let userEmail = this.state.email
-        APIManager.get("users")
-        .then(users => {
-            return users.find(user => user.email === userEmail)
-            })
-            // localStorage.setItem("userId", user.id)
-        }
+
+  findAndSetUser = (userEmail) => {
+
+    APIManager.get("users")
+    .then(users => {
+        return users.find(user => user.email === userEmail)
+        })
+    .then(verifiedUser => this.props.setUser(verifiedUser))
+      }
+    // .then(user => {
+    //   console.log(user)
+    //   localStorage.setItem("userId", user.id)
+    // }
+// )}
         
         // .then(result => {
         //     if (result) {
@@ -68,7 +105,7 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.findUser}>
+      <form onSubmit={this.addUser}>
         <fieldset>
             <h3>Please sign in</h3>
             <div className="formgrid">

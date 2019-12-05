@@ -22,28 +22,36 @@ export default class ApplicationViews extends Component {
 
         <Route
           exact path="/login" render={props => {
+            console.log("app view", this.props.user)
+            if (this.props.user) {
+
+            return <Redirect to="/" />
+            } else {
             return <Login setUser={this.props.setUser} searchUsers={this.props.searchUsers}
              {...props} {...this.props} />
-          }}
+            }}}
         />
 
         <Route
           path="/friends" render={props => {
-            return (
-              <FriendList
+            if (this.props.user) {
+            return <FriendList
                 getFriends={this.props.getFriends}
                 addFriend={this.props.addFriend}
                 removeFriend={this.props.removeFriend}
-                friends={this.props.friends}
-              />
-            );
-          }}
+                friends={this.props.friends} />
+              } else {
+                return <Redirect to="/login" />
+            }}}
         />
 
         <Route
           path="/messages" render={props => {
+            if (this.props.user) {
             return <MessageList {...props} />
-          }}
+          } else {
+            return <Redirect to="/login" />
+            }}}
         />
 
         <Route
@@ -53,58 +61,86 @@ export default class ApplicationViews extends Component {
             }  else {
               return <Redirect to="/login" />
             }
-          }} />
+          }} 
+            
+          />
 
         <Route path="/tasks/new" render={(props) => {
+          if (this.props.user) {
           return <TaskForm {...props} {...this.props} />
+        }  else {
+              return <Redirect to="/login" />
+            }
         }} />
 
 
         {/* Author of Events Routes: Lauren Riddle */}
         <Route exact
           path="/events" render={props => {
+            if (this.props.user) {
             return <EventList {...props} />
+          }  else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
         <Route exact
           path="/events/new" render={props => {
+            if (this.props.user) {
             return <EventForm {...props} />
+          }  else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
+        <Route path="/events/:eventId(\d+)/edit" render={props => {
+                      if (this.props.user) {
+          return <EventEditForm {...props} />
+        }  else {
+              return <Redirect to="/login" />
+            }
+        }} />
 {/* path to articles page renders all articles of user and user's friends */}
         <Route
           exact path="/articles" render={props => {
+            if (this.props.user) {
             return <ArticleList 
               {...props}
             />
+          }  else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
 {/* path to create new article is a form */}
         <Route
           path="/articles/new" render={props => {
+            if (this.props.user) {
             return <ArticleForm
               {...props}
             />
+          }  else {
+              return <Redirect to="/login" />
+            }
           }}
         />
 
 {/* path to update article is a form         */}
         <Route
           path="/articles/:articleId(\d+)/edit" render={props => {
-
+            if (this.props.user) {
             console.log(props)
             return <ArticleEditForm
               {...props}
-
             />
+          }  else {
+              return <Redirect to="/login" />
+            }
           }}
         />
-        <Route path="/events/:eventId(\d+)/edit" render={props => {
-          return <EventEditForm {...props} />
-        }} />
 
       </React.Fragment>
     );
