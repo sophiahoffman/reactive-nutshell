@@ -17,7 +17,7 @@ class FriendList extends Component {
       <>
       <div className="friend-search-container">
         <h4>Add a Friend:</h4>
-        <FriendSearch addFriend={this.props.addFriend} displayNewAlert={this.props.displayNewAlert}/>
+        <FriendSearch addFriend={this.props.addFriend} displayNewAlert={this.props.displayNewAlert} {...this.props} />
         </div>
           <div className="friends-flex">
         <ListGroup>

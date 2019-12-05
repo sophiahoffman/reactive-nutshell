@@ -3,6 +3,12 @@ import { Button, Card, ListGroup } from "react-bootstrap";
 import "./Friend.css";
 
 class FriendCard extends Component {
+  state = {
+    loadingStatus: true
+  };
+  componentDidMount() {
+    this.setState({ loadingStatus: false });
+  }
   render() {
     return (
       <ListGroup.Item>
