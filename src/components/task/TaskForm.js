@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TaskAPIManager from '../../modules/TaskAPIManager';
 import { Form, FormGroup, Button } from 'react-bootstrap';
+import "./TaskForm.css"
 
 
 class TaskForm extends Component {
@@ -43,28 +44,32 @@ class TaskForm extends Component {
     render() {
         return (
             <>
-                <Form>
+                <Form className="taskForms">
                     <FormGroup>
-                        <div className="formgrid">
-                            <input
+                        <div>
+                            <Form.Label htmlFor="taskName">Name</Form.Label>
+                            <Form.Control
+                                size="lg"
                                 type="text"
                                 required
                                 onChange={this.handleFieldChange}
                                 id="taskName"
-                                placeholder="task"
+                                placeholder="Your next task"
                             />
-                            <Form.Label htmlFor="taskName">Name</Form.Label>
-                            <input
+                            <Form.Label htmlFor="expectedCompletionDate">Date to be completed</Form.Label>
+                            <Form.Control
+                                className="small-boxes"
+                                size="lg"
                                 type="date"
                                 required
                                 onChange={this.handleFieldChange}
                                 id="expectedCompletionDate"
                             />
-                            <Form.Label htmlFor="expectedCompletionDate">Date to be completed</Form.Label>
                         </div>
-                        <div className="alignRight">
+                        <div>
                             <Button
-                                type="button"
+                                variant="outline-success"
+                                block
                                 disabled={this.state.loadingStatus}
                                 onClick={this.constructNewTask}
                             >Submit</Button>
