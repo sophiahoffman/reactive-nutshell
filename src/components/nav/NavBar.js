@@ -1,11 +1,12 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
+import NavBarBS from "react-bootstrap/NavBar"
 
 class NavBar extends Component {
     render() {
         return (
-            <nav className="navbar bg-dark text-white flex-md-nowrap p-0 shadow">
+            <NavBarBS sticky="top" className="navbar bg-dark text-white flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
                         <Link className="nav-link" to="/articles">Articles</Link>
@@ -30,7 +31,7 @@ class NavBar extends Component {
                         </li>
                     </ul>
                 </span>
-            </nav>
+            </NavBarBS>
         )
     }
 }

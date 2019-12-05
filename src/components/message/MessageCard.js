@@ -8,7 +8,8 @@ class MessageCard extends Component {
     state = {
         messageObj: {},
         newMessage: "",
-        editMode: false
+        editMode: false,
+        friendsIdList: []
     }
     
     editMessage = () => {
@@ -39,12 +40,28 @@ class MessageCard extends Component {
         this.setState(stateToChange)
     }
 
+    handleFriendAdd = () => {
+        console.log("handle friend add works")
+        this.props.addFriend(this.props.message.userId)
+        const tempFriendsIdList = this.state.friendsIdList
+        tempFriendsIdList.push(this.props.message.userId)
+        this.setState({
+            friendsIdList: tempFriendsIdList
+        })
+    }
+
     componentDidMount() {
+        // console.log("this.props", this.props)
+        
+        const tempFriendsIdList = this.props.friends.map(friend => {
+            return friend.userId
+        })
+        console.log("friend userId array", tempFriendsIdList)
         this.setState({
             messageObj: this.props.message,
-            newMessage: this.props.message.message
+            newMessage: this.props.message.message,
+            friendsIdList: tempFriendsIdList
         })
-        console.log("this.props", this.props)
     }
 
     render() {
@@ -70,10 +87,18 @@ class MessageCard extends Component {
                     <button onClick={this.saveMessage}>Save</button>
                 </Card>
             )
+        } else if(!this.state.friendsIdList.includes(this.props.message.userId)) {
+            return (
+                <Card>
+                    <span><span className="userName" onClick={this.handleFriendAdd}>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
+                    <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
+                        {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
+                </Card>
+            )
         } else {
             return (
                 <Card>
-                    <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
+                    <span><span>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
                     <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                         {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
                 </Card>
