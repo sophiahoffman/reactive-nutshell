@@ -8,8 +8,7 @@ class Nutshell extends Component {
 
   state = {
     user: false,
-    userId: ""
-
+    userId: JSON.parse(localStorage.getItem("credentials"))
   }
 
   // Check if credentials are in local storage
@@ -17,22 +16,15 @@ class Nutshell extends Component {
   isAuthenticated = () => localStorage.getItem("credentials") !== null
 
   setUser = authObj => {
-    /*
-      For now, just store the email and password that
-      the customer enters into local storage.
-    */
-    // localStorage.setItem(
-    //   "credentials",
-    //   JSON.stringify(authObj)
-    // )
+
     localStorage.setItem(
       "credentials",
       JSON.stringify(authObj)
     )
-    localStorage.setItem(
-      "userId",
-      JSON.stringify(authObj.id)
-    )
+    // localStorage.setItem(
+    //   "userId",
+    //   JSON.stringify(authObj.id)
+    // )
     this.setState({
       user: this.isAuthenticated(),
     });
@@ -60,10 +52,10 @@ class Nutshell extends Component {
         <NavBar user={this.state.user}
           clearUser={this.clearUser} />
         <FriendWrapper
-        user={this.state.user}
-        setUser={this.setUser}
-        searchUsers={this.searchUsers}
-        getUser={this.getUser} />
+          user={this.state.user}
+          setUser={this.setUser}
+          searchUsers={this.searchUsers}
+          getUser={this.getUser} />
       </React.Fragment>
     );
   }

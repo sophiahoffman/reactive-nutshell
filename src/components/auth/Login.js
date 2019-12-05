@@ -20,14 +20,14 @@ class Login extends Component {
 
     // search users for existing user
     searchUsers = (e) => {
-        TaskAPIManager.searchUser(this.state.fullName)
+        return TaskAPIManager.searchUser(this.state.fullName)
             .then((existingUser) => {
                 if (existingUser.length > 0) {
-                    {window.alert("welcome back to Nutshell!")}
-                    { this.props.setUser(existingUser[0])}
+                    { window.alert("welcome back to Nutshell!") }
+                    { this.props.setUser(existingUser[0]) }
                     { this.props.history.push("/tasks") }
                 } else {
-                    {window.alert("welcome to Nutshell!")}
+                    { window.alert("welcome to Nutshell!") }
                     this.setState({ loadingStatus: true });
                     const user = {
                         fullName: this.state.fullName,
@@ -51,8 +51,6 @@ class Login extends Component {
             the customer enters into local storage.
         */
         this.searchUsers()
-        this.props.setUser({ email: this.state.email, password: this.state.password })
-        this.props.history.push("/tasks");
 
     }
 
