@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import the components we will need
 import TaskCard from './TaskCard'
 import TaskAPIManager from '../../modules/TaskAPIManager'
-import { Button } from 'react-bootstrap'
+import { Button, } from 'react-bootstrap'
 
 class TaskList extends Component {
     //define what this component needs to render
@@ -61,10 +61,10 @@ class TaskList extends Component {
         return (
             <>
                 <Button variant="primary"
-                    className="btn"
+                    size="lg"
                     onClick={() => { this.props.history.push("/tasks/new") }}
                 >New Task</Button>
-                <div className="container-cards">
+                <div>
                     {this.state.tasks.map(task =>
                         <TaskCard
                             key={task.id}
