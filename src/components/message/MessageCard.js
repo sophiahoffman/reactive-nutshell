@@ -70,11 +70,13 @@ class MessageCard extends Component {
             return (
                 <div className="messagesCard align-right-msg card">
                     <Card className="messagesCard-center">
-                        <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
+                    <div className="imageCenter">
+                    <img src="http://www.icons101.com/icon_png/size_256/id_78917/user.png" alt="Smiley face" height="42" width="42"/>
+                       </div><hr />
+                        <span>{this.props.message.user.fullName} said: {this.props.message.message}</span>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                             {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
                         <div className="msgButtonContainer">
-
                             <Button className="messageButton" onClick={this.editMessage}>Edit</Button>
                         </div>
                     </Card>
@@ -86,7 +88,9 @@ class MessageCard extends Component {
                 <div className="messagesCard align-right-msg card">
 
                     <Card className="messagesCard-center">
-                        <span>{this.props.message.user.fullName} - </span>
+                    <div className="imageCenter">
+                    <img src="http://www.icons101.com/icon_png/size_256/id_78917/user.png" alt="Smiley face" height="42" width="42"/>
+                       </div><hr/>                        <span>{this.props.message.user.fullName} said: </span>
                         <textarea id="newMessage" onChange={this.handleFieldChange}
                             defaultValue={this.props.message.message}></textarea>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
@@ -102,7 +106,9 @@ class MessageCard extends Component {
                 <div className="messagesCard align-left-msg card">
 
                     <Card className="messagesCard-center">
-                        <span><span className="userName" onClick={this.handleFriendAdd}>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
+                    <div className="imageCenter">
+                    <img src="http://www.icons101.com/icon_png/size_256/id_78917/user.png" alt="Smiley face" height="42" width="42"/>
+                       </div> <hr />                       <span><span className="userName" onClick={this.handleFriendAdd}>{this.props.message.user.fullName}</span> said: {this.props.message.message}</span>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                             {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
                     </Card>
@@ -113,7 +119,9 @@ class MessageCard extends Component {
                 <div className="messagesCard align-left-msg card">
 
                     <Card className="messagesCard-center">
-                        <span><span>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
+                    <div className="imageCenter">
+                    <img src="http://www.icons101.com/icon_png/size_256/id_78917/user.png" alt="Smiley face" height="42" width="42"/>
+                       </div><hr/> <span><span>{this.props.message.user.fullName}</span> said: {this.props.message.message}</span>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                             {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
                     </Card>
