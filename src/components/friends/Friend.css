@@ -1,6 +1,6 @@
 .friends-button {
     margin: 10px; 
-    width: 40%;
+    width: 80%;
 }
 .friendsCard {
     flex-basis: 30%;
@@ -21,7 +21,8 @@
 .friends-flex {
     display: flex;
     justify-content: space-around;
-    width: 100%;}
+    width: 100%;
+}
 .friends__list {
   display: flex;
 }
