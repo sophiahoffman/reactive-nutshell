@@ -33,7 +33,7 @@ button {
     margin: 10px;
     text-align: center;
     box-shadow: 2px 2px 2px 2px lightgray;
-    width: 50%;
+    width: 40%;
 }
 .messageButton {
     margin-bottom: 10px;
@@ -56,7 +56,8 @@ button {
     width: 70%;
     margin-right: auto;
     margin-left: auto;
-    /* border: 2px solid lightgrey; */
+    border-right: 2px solid lightgrey;
+    border-left: 2px solid lightgrey;
     /* box-shadow: 2px 2px 2px 2px lightgray; */
 
 }
