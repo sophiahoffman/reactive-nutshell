@@ -68,8 +68,8 @@ class MessageCard extends Component {
         if (Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
             this.state.editMode === false) {
             return (
-                <div className="messagesCard card">
-                    <Card>
+                <div className="messagesCard align-right-msg card">
+                    <Card className="messagesCard-center">
                         <span>{this.props.message.user.fullName} - {this.props.message.message}</span>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                             {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
@@ -83,9 +83,9 @@ class MessageCard extends Component {
         } else if (Number(this.props.message.userId) === Number(localStorage.getItem("userId")) &&
             this.state.editMode === true) {
             return (
-                <div className="messagesCard card">
+                <div className="messagesCard align-right-msg card">
 
-                    <Card className="friendsCard-center">
+                    <Card className="messagesCard-center">
                         <span>{this.props.message.user.fullName} - </span>
                         <textarea id="newMessage" onChange={this.handleFieldChange}
                             defaultValue={this.props.message.message}></textarea>
@@ -99,9 +99,9 @@ class MessageCard extends Component {
             )
         } else if (!this.state.friendsIdList.includes(this.props.message.userId)) {
             return (
-                <div className="messagesCard card">
+                <div className="messagesCard align-left-msg card">
 
-                    <Card>
+                    <Card className="messagesCard-center">
                         <span><span className="userName" onClick={this.handleFriendAdd}>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                             {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>
@@ -110,9 +110,9 @@ class MessageCard extends Component {
             )
         } else {
             return (
-                <div className="messagesCard card">
+                <div className="messagesCard align-left-msg card">
 
-                    <Card>
+                    <Card className="messagesCard-center">
                         <span><span>{this.props.message.user.fullName}</span> - {this.props.message.message}</span>
                         <p className="timestamp">{formatTimestamp(this.props.message.timestamp).split(",")[0]}<br />
                             {formatTimestamp(this.props.message.timestamp).split(",")[1]}</p>

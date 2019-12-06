@@ -40,6 +40,7 @@ class MessageList extends Component {
                         {...this.props}
                     />
                 </div>
+                <div className="messagelistContainer">
                 <div className="messageList">
                     { this.state.messages.map(message =>
                         <MessageCard 
@@ -50,6 +51,7 @@ class MessageList extends Component {
                             {...this.props}
                         />
                     )}
+                </div>
                 </div>
             </>
         )
