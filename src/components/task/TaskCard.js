@@ -9,26 +9,22 @@ class TaskCard extends Component {
       <Container className="taskList">
         <Row>
           <Col>
-          <div className="taskCard card nextEvent">
             <Card className="taskCard">
               <div className="taskCard-content">
                 <Card.Header as="h3">To Do: <span className="card-taskname">{this.props.task.name}</span></Card.Header>
                 <Card.Text>Will Complete by: {this.props.task.expectedCompletionDate}</Card.Text>
                 <Card.Text>
-                  <label>Completed: </label>
-                  <input type="checkbox" className="taskCheckbox"
+                  <label>Completed: <input type="checkbox" className="taskCheckbox"
                     onChange={() => this.props.handleFieldChange}
                     onClick={() => this.props.completeTask(this.props.task.id)}
-                  />
-                </Card.Text>
-                <div>
-                  <Button variant="info" block
+                  /> </label>
+                  
+                  <Button className="taskButtons" variant="info" 
                     onClick={() => { this.props.history.push(`/tasks/${this.props.task.id}/edit`) }}>Edit</Button>
-                  <Button variant="danger" block onClick={() => this.props.deleteTask(this.props.task.id)}>Give Up</Button>
-                </div>
+                  <Button className="taskButtons" variant="danger"  onClick={() => this.props.deleteTask(this.props.task.id)}>Give Up</Button>
+                </Card.Text>
               </div>
             </Card>
-            </div>
           </Col>
         </Row>
       </Container>

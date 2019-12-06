@@ -69,9 +69,9 @@ export class RegularEventCard extends Component {
             );
         } else {
             return (
-                <div className="eventCard card">
+                <div className="friendeventCard card">
                     <Card>
-                        <div className="card-content">
+                        <div className="friendeventCard-content card-content">
                             <Card.Body>
                                 <h2><span className="card-eventname">{this.props.event.eventName}</span></h2><hr />
                                 <p>Date: {this.props.event.eventDate}</p>

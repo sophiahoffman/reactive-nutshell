@@ -1,9 +1,5 @@
-.taskList {
-    /* background-color: black; */
-}
 .taskCard-content {
     text-align: center;
-    /* background-color: #ffc; */
 }
 .taskCard {
     flex-basis: 80%;
@@ -12,9 +8,15 @@
     box-shadow: 2px 2px 2px 2px lightgray;
 }
 .tasks-section-content {
-    text-align: center;
+text-align: center;
 padding: 10px;
 }
 .newTaskBtn {
     width: 15%;
+}
+.taskButtons {
+    width: 20%;
+    /* margin: auto; */
+
+    margin: 10px;
 }

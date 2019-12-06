@@ -36,8 +36,8 @@ class ArticleCards extends Component {
                         <div className = "card-content friendCard">
                             <Card.Body>
                                 <h2 className="friendCardTitle">{this.props.article.title}</h2><hr />
-                                <h3><a href={this.props.article.url}>{this.props.article.url}</a></h3>
-                                <h3>{this.props.article.synopsis}</h3><hr />
+                                <h3 className="article-content"><a href={this.props.article.url}>{this.props.article.url}</a></h3>
+                                <h3 className="article-content">{this.props.article.synopsis}</h3><hr />
                             </Card.Body>
                             {/* </div> */}
                         </div>
