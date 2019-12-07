@@ -7,7 +7,7 @@
 1. In the `api` directory, create a copy of the `database.json.example` and remove the .example extension.
 1. Run `npm install` and wait for all dependencies to be installed
 1. Run `npm start` to verify that installation was successful.
-1. Start your JSON server
+1. Run your JSON server on a port other than 3000
 
 ## What is Reactive Nutshell?
 
