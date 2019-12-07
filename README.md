@@ -17,10 +17,9 @@ This multi-user app utilizes React library with react-bootstrap styling and JSON
 
 Users should login or register if they have not previously logged in.
 
-There are 5 features:
-
-Friends - users can add other users as friends  
-Messages - users can view all user messages and create, edit and delete their own  
+There are 5 features:  
+Friends - users can add and delete other users as friends  
+Messages - users can view all user messages and create and edit their own; users can also add friends from the chat by clicking on their name  
 Tasks - users can view, create, edit and delete their tasks and checkbox will remove it from display  
 Events - users can view their own and their friends events; and are able to create, edit and delete their own  
 Articles - users can view their own and their friends articles; and are able to create, edit and delete their own
